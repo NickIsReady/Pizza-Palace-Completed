@@ -36,7 +36,7 @@ public abstract class Customer {
 	 * 
 	 */
 	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{
-		if (name.isEmpty() || (mobileNumber.isEmpty() || mobileNumber.contains("[a-zA-Z]+") == false) || locationX < 0 || locationY < 0 || type.isEmpty()) throw new CustomerException()
+		if (name.isEmpty() || (mobileNumber.isEmpty() || mobileNumber.contains("[a-zA-Z]+") == false) || locationX < 0 || locationY < 0 || type.isEmpty()) throw new CustomerException();
 		CustomerName = name;
 		CustomerMobile = mobileNumber;
 		CustomerXLocation = locationX;

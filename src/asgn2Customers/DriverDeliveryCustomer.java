@@ -1,6 +1,7 @@
 package asgn2Customers;
 
 import asgn2Exceptions.CustomerException;
+import java.lang.Math;
 
 /** A class that represents a customer that has chosen to have their pizza delivered by a driver. 
  * This class extends the abstract Customer class and calculates the delivery distance as the Manhattan  
@@ -12,6 +13,9 @@ import asgn2Exceptions.CustomerException;
  */
 public class DriverDeliveryCustomer extends Customer {
 
+	
+	private int CustomerXLocation;
+	private int CustomerYLocation;
 	/**
 	 *  This class represents a customer of the Pizza Palace restaurant that has chosen to have their pizza delivered by 
 	 *  a driver.  A CustomerException is thrown if the any of the constraints listed in Section 5.2 of the Assignment
@@ -29,6 +33,9 @@ public class DriverDeliveryCustomer extends Customer {
 	 */
 	public DriverDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
 		// TO DO
+		CustomerXLocation = locationX;
+		CustomerYLocation = locationY;
+		
 	}
 	
 	/**
@@ -38,6 +45,9 @@ public class DriverDeliveryCustomer extends Customer {
 	 * @return The distance between the restaurant and the customer in Manhattan distance.
 	 */
 	@Override
-	public double getDeliveryDistance() {	}
+	public double getDeliveryDistance() {
+		double distance =  Math.abs(CustomerXLocation) + Math.abs(CustomerYLocation);
+		return distance;
+	}
 
 }
