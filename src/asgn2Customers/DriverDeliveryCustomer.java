@@ -33,6 +33,8 @@ public class DriverDeliveryCustomer extends Customer {
 	 */
 	public DriverDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
 		super(name, mobileNumber, locationX, locationY, "Driver Delivery");
+		CustomerXLocation = locationX;
+		CustomerYLocation = locationY;
 	}
 	
 	/**
