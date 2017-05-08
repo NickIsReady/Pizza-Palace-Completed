@@ -2,9 +2,6 @@ package asgn2Customers;
 
 
 import asgn2Exceptions.CustomerException;
-//import asgn2Customers.DriverDeliveryCustomer;
-//import asgn2Customers.PickUpCustomer;
-//import asgn2Customers.DroneDeliveryCustomer;
 
 /**
  * A class that instantiates the subclasses of asgn2Customers.Customer using the Factory Method pattern. 
