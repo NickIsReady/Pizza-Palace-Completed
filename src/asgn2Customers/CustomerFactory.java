@@ -2,6 +2,9 @@ package asgn2Customers;
 
 
 import asgn2Exceptions.CustomerException;
+import asgn2Customers.DriverDeliveryCustomer;
+import asgn2Customers.PickUpCustomer;
+import asgn2Customers.DroneDeliveryCustomer;
 
 /**
  * A class that instantiates the subclasses of asgn2Customers.Customer using the Factory Method pattern. 
@@ -28,6 +31,18 @@ public class CustomerFactory {
 	 * @throws CustomerException if the customerCode is not one of the three valid codes listed in Section 5.3 of the Assignment Specification. 
 	 */
 	public static Customer getCustomer(String customerCode, String name, String mobileNumber, int locationX,  int locationY) throws CustomerException{
-		if (customerCode != "PUC" ||customerCode != "DNC" || customerCode != "DVC") throw new CustomerException()
+		switch(customerCode){
+			case("PUC") :
+				
+				return PickUpCustomer(name, mobileNumber, locationX, locationY);
+			case("DNC") :
+				
+				return DroneDeliveryCustomer(name, mobileNumber, locationX, locationY);
+			case("DVC") :
+				
+				return DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
+			default :
+				throw new CustomerException("The customer specified does not match any of the three types, Pick Up, Driver Delivery or Drone Delivery");
+		}
 	}
 }

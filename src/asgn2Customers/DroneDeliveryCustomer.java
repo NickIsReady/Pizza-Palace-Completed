@@ -32,12 +32,7 @@ public class DroneDeliveryCustomer extends Customer {
 	 * 
 	 */
 	public DroneDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
-		//if (name.isEmpty() || (mobileNumber.isEmpty() || mobileNumber.contains("[a-zA-Z]+") == false) || locationX < 0 || locationY < 0) throw new CustomerException();
-		CustomerXLocation = locationX;
-		CustomerYLocation = locationY;
-		
-		
-		// TO DO
+		super(name, mobileNumber, locationX, locationY, "Drone Delivery");
 	}
 
 	/**
@@ -48,7 +43,7 @@ public class DroneDeliveryCustomer extends Customer {
 	 */
 	@Override
 	public double getDeliveryDistance() {
-		double distance = Math.sqrt(Math.pow(CustomerXLocation, 2.0) + Math.pow(CustomerYLocation, 2));
+		double distance = Math.sqrt(Math.pow(CustomerXLocation, 2.0) + Math.pow(CustomerYLocation, 2.0));
 		return distance;
 	}
 	

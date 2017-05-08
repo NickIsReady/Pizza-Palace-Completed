@@ -32,10 +32,7 @@ public class DriverDeliveryCustomer extends Customer {
 	 * 
 	 */
 	public DriverDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
-		// TO DO
-		CustomerXLocation = locationX;
-		CustomerYLocation = locationY;
-		
+		super(name, mobileNumber, locationX, locationY, "Driver Delivery");
 	}
 	
 	/**
