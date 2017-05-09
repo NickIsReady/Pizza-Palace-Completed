@@ -29,7 +29,7 @@ public class PizzaRestaurant {
 	private ArrayList<Customer> customers;
 	private ArrayList<Pizza> pizzas;
 
-	
+	private boolean 
 	/**
 	 * Creates an instance of the PizzaRestaurant and sets the customers and pizzas fields to
 	 * an appropriate initial empty state. 
@@ -107,7 +107,10 @@ public class PizzaRestaurant {
 	 * @throws CustomerException if index is invalid.
 	 */
 	public Customer getCustomerByIndex(int index) throws CustomerException{
-		// TO DO
+		if (index < 0 || index >= getNumCustomerOrders()){
+			throw new CustomerException("Index is invalid.");
+		}
+		return this.customers.get(index);
 	}
 	
 	/**
@@ -137,7 +140,7 @@ public class PizzaRestaurant {
 	 * @return the number of objects contained in the customers field.
 	 */
 	public int getNumCustomerOrders(){
-		// TO DO
+		return customers.size();
 	}
 
 			
@@ -148,7 +151,11 @@ public class PizzaRestaurant {
 	 * @return the total delivery distance for all Customers objects in the customers field.
 	 */
 	public double getTotalDeliveryDistance(){
-		// TO DO
+		double totalDistance = 0.00;
+		for (Customer customer : this.customers){
+			totalDistance  += customer.getDeliveryDistance();
+		}
+		return totalDistance;
 	}
 
 	/**
