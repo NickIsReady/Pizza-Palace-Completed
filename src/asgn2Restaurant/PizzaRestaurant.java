@@ -1,9 +1,16 @@
 package asgn2Restaurant;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import asgn2Customers.Customer;
 import asgn2Pizzas.Pizza;
+import asgn2Exceptions.CustomerException;
+import asgn2Exceptions.LogHandlerException;
+import asgn2Exceptions.PizzaException;
+import asgn2Restaurant.LogHandler; 
 
 /**
  * This class acts as a ‘model’ of a pizza restaurant. It contains an ArrayList of Pizza objects and an ArrayList of  Customer objects.
@@ -32,7 +39,7 @@ public class PizzaRestaurant {
 	 * 
 	 */
 	public PizzaRestaurant() {
-		// TO DO
+		this.customers = new ArrayList<Customer>();
 	}
 
 	/**
@@ -40,7 +47,7 @@ public class PizzaRestaurant {
 	 * The other classes that the method interacts with are listed in Section 11 of the specification document. 
      *
      * <P> PRE: TRUE
-     * <P>POST: If no exception is thrown then the customers and pizzas fields are populated with the details in the log file ordered as they appear in teh log file.
+     * <P>POST: If no exception is thrown then the customers and pizzas fields are populated with the details in the log file ordered as they appear in the log file.
      * <P>      If an exception is thrown then the customers and pizzas fields should be empty.
      * 
 	 * @param filename The log's filename
@@ -51,7 +58,46 @@ public class PizzaRestaurant {
      *
 	 */
 	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
-		// TO DO
+		boolean FileProcessedCorrectly = true;
+		try {
+			BufferedReader LogToRead = new BufferedReader(new FileReader(filename));
+			pizzas = LogHandler.populatePizzaDataset(filename);
+			customers = LogHandler.populateCustomerDataset(filename);
+			boolean elementsInOrder = true;
+			String line;
+			for (int i = 0; i < customers.size(); i++) {
+				line = LogToRead.readLine();
+				String lineArray[] = line.split(",");
+				if (customers.get(i).getName() != lineArray[2]
+				 || customers.get(i).getMobileNumber() != lineArray[3]
+				 || customers.get(i).getCustomerType() != lineArray[4]
+				 || customers.get(i).getLocationX() != Integer.parseInt(lineArray[5])
+				 || customers.get(i).getLocationY() != Integer.parseInt(lineArray[6])){
+					elementsInOrder = false;
+				}
+			}
+			/*for (int i = 0; i < pizzas.size(); i++) {
+				line = LogToRead.readLine();
+				String lineArray[] = line.split(",");
+				if (customers.get(i).getName() != lineArray[2]
+				 || customers.get(i).getMobileNumber() != lineArray[3]
+				 || customers.get(i).getCustomerType() != lineArray[4]
+				 || customers.get(i).getLocationX() != Integer.parseInt(lineArray[5])
+				 || customers.get(i).getLocationY() != Integer.parseInt(lineArray[6])){
+					elementsInOrder = false;
+				}
+			}*/
+			LogToRead.close();
+			if (!elementsInOrder) {
+				throw new LogHandlerException("Elements are out of order");
+			}
+
+		} catch (CustomerException | LogHandlerException | PizzaException | IOException e){
+			System.out.println(e.getMessage());
+        	e.printStackTrace();
+        	FileProcessedCorrectly = false;
+		}
+		return FileProcessedCorrectly;
 	}
 
 	/**
@@ -121,7 +167,7 @@ public class PizzaRestaurant {
 	 * <P> POST:  The pizzas and customers fields are set to their initial empty states
 	 */
 	public void resetDetails(){
-		// TO DO
+		this.customers.clear();
 	}
 
 }
