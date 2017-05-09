@@ -50,7 +50,9 @@ public class CustomerTests {
 	
 	@Test
 	public void testGetName() {
-		
+		assertEquals(nameA, customerA.getName());
+		assertEquals(nameB, customerB.getName());
+		assertEquals(nameC, customerC.getName());
 	}
 	
 	@Test
