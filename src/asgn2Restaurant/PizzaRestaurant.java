@@ -29,7 +29,6 @@ public class PizzaRestaurant {
 	private ArrayList<Customer> customers;
 	private ArrayList<Pizza> pizzas;
 
-	private boolean 
 	/**
 	 * Creates an instance of the PizzaRestaurant and sets the customers and pizzas fields to
 	 * an appropriate initial empty state. 
