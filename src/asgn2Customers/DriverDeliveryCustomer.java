@@ -8,7 +8,7 @@ import java.lang.Math;
  * Distance between the customer and the restaurant. A description of the class's
  * fields and their constraints is provided in Section 5.2 of the Assignment Specification.
  * 
- * @author Person B
+ * @author Nicholas Constantine (n9171550)
  *
  */
 public class DriverDeliveryCustomer extends Customer {

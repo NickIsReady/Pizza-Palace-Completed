@@ -19,7 +19,7 @@ import java.io.IOException;
  * and Customer object - either as an individual Pizza/Customer object or as an
  * ArrayList of Pizza/Customer objects.
  * 
- * @author Nicholas Constantine n9171550 and Person B
+ * @author Nicholas Constantine (n9171550) and Person B
  *
  */
 public class LogHandler {
