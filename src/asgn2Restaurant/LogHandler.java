@@ -3,10 +3,15 @@ package asgn2Restaurant;
 
 import java.util.ArrayList;
 import asgn2Customers.Customer;
+import asgn2Customers.CustomerFactory;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -14,7 +19,7 @@ import asgn2Pizzas.Pizza;
  * and Customer object - either as an individual Pizza/Customer object or as an
  * ArrayList of Pizza/Customer objects.
  * 
- * @author Person A and Person B
+ * @author Nicholas Constantine n9171550 and Person B
  *
  */
 public class LogHandler {
@@ -30,7 +35,32 @@ public class LogHandler {
 	 * 
 	 */
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
-		// TO DO
+		ArrayList<Customer> CustomerList = new ArrayList<Customer>();
+		try {
+			BufferedReader LogToRead = new BufferedReader(new FileReader(filename));
+			int CountCustomers = 0;
+			LogToRead.ready();
+			while(LogToRead.readLine() != null) {
+				CountCustomers++;
+			}
+			String line;
+			for (int i = 0; i < CountCustomers; i++){
+				line = LogToRead.readLine();
+				CustomerList.add(createCustomer(line));
+			}
+			LogToRead.close();
+		} catch (CustomerException | LogHandlerException | IOException e) {
+			if (e instanceof CustomerException) {
+				
+			} else if (e instanceof LogHandlerException) {
+				
+			} else if (e instanceof IOException){
+				
+			}
+			System.out.println(e.getMessage());
+        	e.printStackTrace();
+		}
+		return CustomerList;
 	}		
 
 	/**
@@ -55,7 +85,11 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
-		// TO DO
+		
+		String lineArray[] = line.split(",");
+		
+		Customer temp = CustomerFactory.getCustomer(lineArray[4], lineArray[2], lineArray[3], Integer.parseInt(lineArray[5]), Integer.parseInt(lineArray[6]));
+		return temp;
 	}
 	
 	/**
