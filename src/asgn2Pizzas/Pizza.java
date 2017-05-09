@@ -11,7 +11,7 @@ import asgn2Exceptions.PizzaException;
  * Each of these subclasses have a different set of toppings. A description of the class's fields
  * and their constraints is provided in Section 5.1 of the Assignment Specification. 
  * 
- * @author Person A
+ * @author Thomas Shortt (n8854742)
  *
  */
 public abstract class Pizza  {
@@ -51,6 +51,8 @@ public abstract class Pizza  {
 			throw new PizzaException("Delivery time is invalid!");
 		} else if (type.equals("Margherita") == false && type.equals("Vegetarian") == false && type.equals("Meat Lovers") == false) {
 			throw new PizzaException("Pizza type is invalid!");
+		} else if (price < 0.00) {
+			throw new PizzaException("Price is invalid!");
 		}
 		this.quantity = quantity;
 		this.orderTime = orderTime;
@@ -123,8 +125,8 @@ public abstract class Pizza  {
 	 * @return Returns  true if the instance of Pizza contains the specified topping and false otherwise.
 	 */
 	public final boolean containsTopping(PizzaTopping topping){
-		for (PizzaTopping p : PizzaTopping.values()) {
-			if (p == topping) {
+		for (PizzaTopping ingredient : PizzaTopping.values()) {
+			if (ingredient == topping) {
 				return true;
 			}
 		}
