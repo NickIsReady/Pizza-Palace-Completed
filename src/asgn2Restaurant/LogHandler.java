@@ -39,7 +39,10 @@ public class LogHandler {
 		try {
 			BufferedReader LogToRead = new BufferedReader(new FileReader(filename));
 			int CountCustomers = 0;
-			LogToRead.ready();
+			if (!LogToRead.ready()){
+				LogToRead.close();
+				throw new LogHandlerException("Log file is empty");
+			}
 			while(LogToRead.readLine() != null) {
 				CountCustomers++;
 			}
@@ -50,13 +53,6 @@ public class LogHandler {
 			}
 			LogToRead.close();
 		} catch (CustomerException | LogHandlerException | IOException e) {
-			if (e instanceof CustomerException) {
-				
-			} else if (e instanceof LogHandlerException) {
-				
-			} else if (e instanceof IOException){
-				
-			}
 			System.out.println(e.getMessage());
         	e.printStackTrace();
 		}
@@ -85,9 +81,10 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
-		
 		String lineArray[] = line.split(",");
-		
+		if(lineArray.length != 9) {
+			throw new LogHandlerException("Missing elements in log file.");
+		} 
 		Customer temp = CustomerFactory.getCustomer(lineArray[4], lineArray[2], lineArray[3], Integer.parseInt(lineArray[5]), Integer.parseInt(lineArray[6]));
 		return temp;
 	}
