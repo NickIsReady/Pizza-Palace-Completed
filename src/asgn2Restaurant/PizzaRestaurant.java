@@ -39,6 +39,7 @@ public class PizzaRestaurant {
 	 */
 	public PizzaRestaurant() {
 		this.customers = new ArrayList<Customer>();
+		this.pizzas = new ArrayList<Pizza>();
 	}
 
 	/**
@@ -119,7 +120,10 @@ public class PizzaRestaurant {
 	 * @throws PizzaException if index is invalid.
 	 */	
 	public Pizza getPizzaByIndex(int index) throws PizzaException{
-		// TO DO
+		if (index < 0 || index >= this.getNumPizzaOrders()) {
+			throw new PizzaException("Index is invalid!");
+		}
+		return this.pizzas.get(index);
 	}
 	
 	/**
@@ -129,7 +133,7 @@ public class PizzaRestaurant {
 	 * @return the number of objects contained in the pizzas field.
 	 */
 	public int getNumPizzaOrders(){
-		// TO DO
+		return this.pizzas.size();
 	}
 
 	/**
@@ -163,7 +167,11 @@ public class PizzaRestaurant {
 	 * @return the total profit for all of the Pizza objects in the pizzas field.
 	 */	
 	public double getTotalProfit(){
-		// TO DO
+		double totalProfit = 0.00;
+		for (Pizza pizza : this.pizzas) {
+			totalProfit += pizza.getOrderProfit();
+		}
+		return totalProfit;
 	}
 	
 	/**
@@ -174,6 +182,7 @@ public class PizzaRestaurant {
 	 */
 	public void resetDetails(){
 		this.customers.clear();
+		this.pizzas.clear();
 	}
 
 }
