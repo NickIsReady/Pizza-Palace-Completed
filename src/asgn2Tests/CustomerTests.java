@@ -134,6 +134,6 @@ public class CustomerTests {
 	
 	@Test
 	public void testGetDeliveryDistance() {
-		
+		assertEquals(0, customerC.getDeliveryDistance(), 0.1);
 	}
 }
