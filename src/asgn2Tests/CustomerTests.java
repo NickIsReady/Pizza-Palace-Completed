@@ -37,9 +37,8 @@ public class CustomerTests {
 	private int locationYA = 9;
 	private int locationYB = 8;
 	private int locationYC = 3;
-	private String typeA;
-	private String typeB;
-	private String typeC;
+	
+	
 	
 	@Before
 	public void setupCustomer() throws CustomerException {
@@ -57,22 +56,30 @@ public class CustomerTests {
 	
 	@Test
 	public void testGetMobileNumber() {
-		
+		assertEquals(mobileNumberA, customerA.getMobileNumber());
+		assertEquals(mobileNumberB, customerB.getMobileNumber());
+		assertEquals(mobileNumberC, customerC.getMobileNumber());
 	}
 	
 	@Test
 	public void testGetCustomerType() {
-		
+		assertEquals("Driver Delivery", customerA.getCustomerType());
+		assertEquals("Drone Delivery", customerB.getCustomerType());
+		assertEquals("Pick Up", customerC.getCustomerType());
 	}
 	
 	@Test
 	public void testGetLocationX() {
-		
+		assertEquals(locationXA, customerA.getLocationX());
+		assertEquals(locationXB, customerB.getLocationX());
+		assertEquals(locationXC, customerC.getLocationX());
 	}
 	
 	@Test
 	public void testGetLocationY() {
-		
+		assertEquals(locationYA, customerA.getLocationY());
+		assertEquals(locationYB, customerB.getLocationY());
+		assertEquals(locationYC, customerC.getLocationY());
 	}
 	
 	@Test
