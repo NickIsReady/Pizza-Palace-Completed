@@ -60,8 +60,21 @@ public class PizzaTests {
 	}
 	
 	@Test
-	public void TestGetCostPerPizza(){
+	public void TestGetCostPerPizzaMargherita(){
 		PizzaA.calculateCostPerPizza();
-		assertEquals(1.5, PizzaA.getCostPerPizza(),0.1);
+		assertEquals(1.5, PizzaA.getCostPerPizza(), 0);
 	}
+	
+	@Test
+	public void TestGetCostPerPizzaVegetarian(){
+		PizzaB.calculateCostPerPizza();
+		assertEquals(5.5, PizzaB.getCostPerPizza(), 0);
+	}
+	
+	@Test
+	public void TestGetCostPerPizzaMeatLovers(){
+		PizzaC.calculateCostPerPizza();
+		assertEquals(5, PizzaC.getCostPerPizza(), 0);
+	}
+	
 }

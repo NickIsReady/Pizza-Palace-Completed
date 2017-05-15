@@ -35,7 +35,7 @@ public class VegetarianPizza extends Pizza {
 	 *
 	 */
 	public VegetarianPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
-		super(quantity, deliveryTime, deliveryTime, "Vegetarian", 10.00);
+		super(quantity, orderTime, deliveryTime, "Vegetarian", 10.00);
 		if (quantity < 1 || quantity > 10) {
 			throw new PizzaException("Invalid quantity!");
 		} else if (orderTime.isBefore(openingTime) == true || orderTime.isAfter(closingTime) == true) {

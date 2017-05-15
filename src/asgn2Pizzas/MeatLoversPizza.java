@@ -35,7 +35,7 @@ public class MeatLoversPizza extends Pizza {
 	 *
 	 */
 	public MeatLoversPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
-		super(quantity, deliveryTime, deliveryTime, "Meat Lovers", 12.00);
+		super(quantity, orderTime, deliveryTime, "Meat Lovers", 12.00);
 		if (quantity < 1 || quantity > 10) {
 			throw new PizzaException("Invalid quantity!");
 		} else if (orderTime.isBefore(openingTime) == true || orderTime.isAfter(closingTime) == true) {
