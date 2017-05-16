@@ -40,17 +40,12 @@ public class LogHandler {
 		ArrayList<Customer> CustomerList = new ArrayList<Customer>();
 		try {
 			BufferedReader LogToRead = new BufferedReader(new FileReader(filename));
-			int CountCustomers = 0;
 			if (!LogToRead.ready()){
 				LogToRead.close();
 				throw new LogHandlerException("Log file is empty!");
 			}
-			while(LogToRead.readLine() != null) {
-				CountCustomers++;
-			}
 			String line;
-			for (int i = 0; i < CountCustomers; i++){
-				line = LogToRead.readLine();
+			while((line = LogToRead.readLine()) != null) {
 				CustomerList.add(createCustomer(line));
 			}
 			LogToRead.close();
@@ -73,17 +68,12 @@ public class LogHandler {
 		ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
 		try {
 			BufferedReader LogToRead = new BufferedReader(new FileReader(filename));
-			int CountPizzas = 0;
 			if (!LogToRead.ready()) {
 				LogToRead.close();
 				throw new LogHandlerException("Log file is empty!");
 			}
-			while(LogToRead.readLine() != null) {
-				CountPizzas++;
-			}
 			String line;
-			for (int i = 0; i < CountPizzas; i++){
-				line = LogToRead.readLine();
+			while((line = LogToRead.readLine()) != null) {
 				pizzaList.add(createPizza(line));
 			}
 			LogToRead.close();
@@ -104,7 +94,7 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
-		String lineArray[] = line.split(",");
+		String[] lineArray = line.split(",");
 		if(lineArray.length != 9) {
 			throw new LogHandlerException("Missing elements in log file.");
 		} 
@@ -121,7 +111,7 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
-		String lineArray[] = line.split(",");
+		String[] lineArray = line.split(",");
 		if(lineArray.length != 9) {
 			throw new LogHandlerException("Missing elements in log file.");
 		} 

@@ -64,25 +64,43 @@ public class PizzaRestaurant {
 			pizzas = LogHandler.populatePizzaDataset(filename);
 			customers = LogHandler.populateCustomerDataset(filename);
 			boolean elementsInOrder = true;
+			
 			String line;
-			for (int i = 0; i < customers.size(); i++) {
-				line = LogToRead.readLine();
+			int i = 0;
+			while((line = LogToRead.readLine()) != null) {
 				String lineArray[] = line.split(",");
-				if (customers.get(i).getName() != lineArray[2]
-				 || customers.get(i).getMobileNumber() != lineArray[3]
-				 || customers.get(i).getCustomerType() != lineArray[4]
-				 || customers.get(i).getLocationX() != Integer.parseInt(lineArray[5])
-				 || customers.get(i).getLocationY() != Integer.parseInt(lineArray[6])){
+				if (customers.get(i).getName() != lineArray[2]//WORKS
+				|| customers.get(i).getLocationX() != Integer.parseInt(lineArray[5]) //WORKS
+				|| customers.get(i).getLocationY() != Integer.parseInt(lineArray[6])){//WORKS
 					elementsInOrder = false;
 				}
-			}
-			for (int i = 0; i < pizzas.size(); i++) {
-				line = LogToRead.readLine();
-				String lineArray[] = line.split(",");
-				if (pizzas.get(i).getQuantity() != Integer.parseInt(lineArray[8])
-				 || pizzas.get(i).getPizzaType() != lineArray[7]) {
-					elementsInOrder = false;//
+				if (customers.get(i).getMobileNumber() != lineArray[3]){
+					//DOESNT WORK. MAYBE TAKE 0 FROM LINEARRAY 3
+					
 				}
+				if (customers.get(i).getCustomerType() != lineArray[4]){
+					//DOESNT WORK
+				}
+				
+				if (pizzas.get(i).getQuantity() != Integer.parseInt(lineArray[8])) {
+					elementsInOrder = false;
+				}
+				if (pizzas.get(i).getPizzaType().equals("Vegetarian")){
+					if ("PZV" != lineArray[7]) {
+						elementsInOrder = false;
+					}
+				}
+				if (pizzas.get(i).getPizzaType().equals("Margherita")){
+					if ("PZM" != lineArray[7]) {
+						elementsInOrder = false;
+					}
+				}
+				if (pizzas.get(i).getPizzaType().equals("Meat Lovers")){
+					if ("PZL" != lineArray[7]) {
+						elementsInOrder = false;
+					}
+				}
+				i++;
 			}
 			LogToRead.close();
 			if (!elementsInOrder) {
