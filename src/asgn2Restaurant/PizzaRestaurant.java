@@ -76,17 +76,14 @@ public class PizzaRestaurant {
 					elementsInOrder = false;
 				}
 			}
-			/*for (int i = 0; i < pizzas.size(); i++) {
+			for (int i = 0; i < pizzas.size(); i++) {
 				line = LogToRead.readLine();
 				String lineArray[] = line.split(",");
-				if (customers.get(i).getName() != lineArray[2]
-				 || customers.get(i).getMobileNumber() != lineArray[3]
-				 || customers.get(i).getCustomerType() != lineArray[4]
-				 || customers.get(i).getLocationX() != Integer.parseInt(lineArray[5])
-				 || customers.get(i).getLocationY() != Integer.parseInt(lineArray[6])){
+				if (pizzas.get(i).getQuantity() != Integer.parseInt(lineArray[8])
+				 || pizzas.get(i).getPizzaType() != lineArray[7]) {
 					elementsInOrder = false;
 				}
-			}*/
+			}
 			LogToRead.close();
 			if (!elementsInOrder) {
 				throw new LogHandlerException("Elements are out of order");
