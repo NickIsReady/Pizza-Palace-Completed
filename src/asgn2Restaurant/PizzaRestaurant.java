@@ -81,7 +81,7 @@ public class PizzaRestaurant {
 				String lineArray[] = line.split(",");
 				if (pizzas.get(i).getQuantity() != Integer.parseInt(lineArray[8])
 				 || pizzas.get(i).getPizzaType() != lineArray[7]) {
-					elementsInOrder = false;
+					elementsInOrder = false;//
 				}
 			}
 			LogToRead.close();
