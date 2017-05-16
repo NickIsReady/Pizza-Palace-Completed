@@ -8,7 +8,7 @@ import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
-import asgn2Pizzas.PizzaFactory;;
+import asgn2Pizzas.PizzaFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,7 +21,7 @@ import java.time.LocalTime;
  * and Customer object - either as an individual Pizza/Customer object or as an
  * ArrayList of Pizza/Customer objects.
  * 
- * @author Nicholas Constantine (n9171550) and Person B
+ * @author Nicholas Constantine (n9171550) and Thomas Shortt (n8854742)
  *
  */
 public class LogHandler {
@@ -43,7 +43,7 @@ public class LogHandler {
 			int CountCustomers = 0;
 			if (!LogToRead.ready()){
 				LogToRead.close();
-				throw new LogHandlerException("Log file is empty");
+				throw new LogHandlerException("Log file is empty!");
 			}
 			while(LogToRead.readLine() != null) {
 				CountCustomers++;
@@ -70,7 +70,28 @@ public class LogHandler {
 	 * 
 	 */
 	public static ArrayList<Pizza> populatePizzaDataset(String filename) throws PizzaException, LogHandlerException{
-		// TO DO
+		ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
+		try {
+			BufferedReader LogToRead = new BufferedReader(new FileReader(filename));
+			int CountPizzas = 0;
+			if (!LogToRead.ready()) {
+				LogToRead.close();
+				throw new LogHandlerException("Log file is empty!");
+			}
+			while(LogToRead.readLine() != null) {
+				CountPizzas++;
+			}
+			String line;
+			for (int i = 0; i < CountPizzas; i++){
+				line = LogToRead.readLine();
+				pizzaList.add(createPizza(line));
+			}
+			LogToRead.close();
+		} catch (PizzaException | LogHandlerException | IOException e) {
+			System.out.println(e.getMessage());
+        	e.printStackTrace();
+		}
+		return pizzaList;
 	}		
 
 	
@@ -104,8 +125,8 @@ public class LogHandler {
 		if(lineArray.length != 9) {
 			throw new LogHandlerException("Missing elements in log file.");
 		} 
-		Pizza temp = PizzaFactory.getPizza(lineArray[7], Integer.parseInt(lineArray[8]), LocalTime.parse(lineArray[0]), LocalTime.parse(lineArray[1]));
-		return temp;		
+		Pizza pizza = PizzaFactory.getPizza(lineArray[7], Integer.parseInt(lineArray[8]), LocalTime.parse(lineArray[0]), LocalTime.parse(lineArray[1]));
+		return pizza;
 	}
 
 }
