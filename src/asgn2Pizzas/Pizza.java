@@ -23,7 +23,7 @@ public abstract class Pizza  {
 	private LocalTime closingTime = LocalTime.of(23, 00);
 	private String type;
 	private double price;
-	private double cost;
+	private double cost = 0;
 	
 	/**
 	 *  This class represents a pizza produced at the Pizza Palace restaurant.  A detailed description of the class's fields
@@ -125,8 +125,18 @@ public abstract class Pizza  {
 	 * @return Returns  true if the instance of Pizza contains the specified topping and false otherwise.
 	 */
 	public final boolean containsTopping(PizzaTopping topping){
-		for (PizzaTopping ingredient : PizzaTopping.values()) {
-			if (ingredient == topping) {
+		if (this.getPizzaType().equals("Margherita")) {
+			if (topping == PizzaTopping.TOMATO || topping == PizzaTopping.CHEESE){
+				return true;
+			}
+		}
+		if (this.getPizzaType().equals("Vegetarian")) {
+			if (topping == PizzaTopping.TOMATO || topping == PizzaTopping.CHEESE || topping == PizzaTopping.EGGPLANT || topping == PizzaTopping.MUSHROOM || topping == PizzaTopping.CAPSICUM){
+				return true;
+			}
+		}
+		if (this.getPizzaType().equals("Meat Lovers")) {
+			if (topping == PizzaTopping.TOMATO || topping == PizzaTopping.CHEESE || topping == PizzaTopping.BACON || topping == PizzaTopping.PEPPERONI || topping == PizzaTopping.SALAMI){
 				return true;
 			}
 		}
