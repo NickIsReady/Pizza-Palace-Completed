@@ -8,10 +8,12 @@ import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+import asgn2Pizzas.PizzaFactory;;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalTime;
 
 /**
  *
@@ -98,7 +100,12 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
-		// TO DO		
+		String lineArray[] = line.split(",");
+		if(lineArray.length != 9) {
+			throw new LogHandlerException("Missing elements in log file.");
+		} 
+		Pizza temp = PizzaFactory.getPizza(lineArray[7], Integer.parseInt(lineArray[8]), LocalTime.parse(lineArray[0]), LocalTime.parse(lineArray[1]));
+		return temp;		
 	}
 
 }
