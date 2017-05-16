@@ -13,6 +13,8 @@ import asgn2Pizzas.Pizza;
 import asgn2Pizzas.PizzaTopping;
 import asgn2Pizzas.VegetarianPizza;
 
+import asgn2Exceptions.PizzaException;
+
 /**
  * A class that that tests the asgn2Pizzas.MargheritaPizza, asgn2Pizzas.VegetarianPizza, asgn2Pizzas.MeatLoversPizza classes. 
  * Note that an instance of asgn2Pizzas.MeatLoversPizza should be used to test the functionality of the 
@@ -43,12 +45,6 @@ public class PizzaTests {
 	private String typeA = "Margherita";
 	private String typeB = "Vegetarian";
 	private String typeC = "Meat Lovers";
-	private double priceA = 8.00;
-	private double priceB = 10.00;
-	private double priceC = 12.00;
-	private double costA;
-	private double costB;
-	private double costC;
 	private Pizza PizzaA;
 	private Pizza PizzaB;
 	private Pizza PizzaC;
@@ -174,5 +170,77 @@ public class PizzaTests {
 		assertTrue(PizzaC.containsTopping(PizzaTopping.SALAMI));
 	}
 	
+	//GetQuantity
+	@Test
+	public void TestGetQuantityMargherita(){
+		assertEquals(quantityA, PizzaA.getQuantity());
+	}
+		
+	@Test
+	public void TestGetQuantityVegetarian(){
+		assertEquals(quantityB, PizzaB.getQuantity());
+	}
+		
+	@Test
+	public void TestGetQuantityMeatLovers(){
+		assertEquals(quantityC, PizzaC.getQuantity());
+	}
+	
+	//GetPizzaType
+	@Test
+	public void TestGetPizzaTypeMargherita(){
+		assertEquals(typeA, PizzaA.getPizzaType());
+	}
+			
+	@Test
+	public void TestGetPizzaTypeVegetarian(){
+		assertEquals(typeB, PizzaB.getPizzaType());
+	}
+	
+	@Test
+	public void TestGetPizzaTypeMeatLovers(){
+		assertEquals(typeC, PizzaC.getPizzaType());
+	}
+	
+	//Exceptions
+	@Test(expected = PizzaException.class)
+	public void ExceptionQuantityLessThanOne() throws PizzaException {
+		Pizza InvalidPizza = new MargheritaPizza(0, orderTimeA, deliveryTimeA);
+	}
+	
+	@Test(expected = PizzaException.class)
+	public void ExceptionQuantityGreaterThanTen() throws PizzaException {
+		Pizza InvalidPizza = new MargheritaPizza(11, orderTimeA, deliveryTimeA);
+	}
+	
+	@Test(expected = PizzaException.class)
+	public void ExceptionOrderTimeBeforeOpening() throws PizzaException {
+		Pizza InvalidPizza = new MargheritaPizza(quantityA, LocalTime.of(18, 50), deliveryTimeA);
+	}
+	
+	@Test(expected = PizzaException.class)
+	public void ExceptionOrderTimeAfterClosing() throws PizzaException {
+		Pizza InvalidPizza = new MargheritaPizza(quantityA, LocalTime.of(23, 10), deliveryTimeA);
+	}
+	
+	@Test(expected = PizzaException.class)
+	public void ExceptionDeliveryTimeBeforeTenMinutes() throws PizzaException {
+		Pizza InvalidPizza = new MargheritaPizza(quantityA, LocalTime.of(20, 10), LocalTime.of(20, 19));
+	}
+	
+	@Test(expected = PizzaException.class)
+	public void ExceptionDeliveryTimeAfterOneHour() throws PizzaException {
+		Pizza InvalidPizza = new MargheritaPizza(quantityA, LocalTime.of(20, 10), LocalTime.of(21, 11));
+	}
+	
+	//@Test(expected = PizzaException.class)
+	//public void ExceptionInvalidType() throws PizzaException {
+	//	Pizza InvalidPizza = new Pizza(quantityA, orderTimeA, deliveryTimeA, "InvalidType", 8.00);
+	//}
+	
+	//@Test(expected = PizzaException.class)
+	//public void ExceptionInvalidPrice() throws PizzaException {
+	//	Pizza InvalidPizza = new Pizza(quantityA, orderTimeA, deliveryTimeA, "Margherita", -8.00);
+	//}
 	
 }

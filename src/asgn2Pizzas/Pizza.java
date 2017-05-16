@@ -24,7 +24,6 @@ public abstract class Pizza  {
 	private String type;
 	private double price;
 	private double cost = 0;
-	private PizzaTopping[] pizzaToppings;
 	
 	/**
 	 *  This class represents a pizza produced at the Pizza Palace restaurant.  A detailed description of the class's fields
