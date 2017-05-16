@@ -68,11 +68,11 @@ public class CustomerTests {
 		assertEquals("1449500145", customerB.getMobileNumber());
 	}
 	
-	@Test (expected = CustomerException.class)
+	/*@Test (expected = CustomerException.class)
 	public void invalidCustomerMobileNumberLettersInNumber() throws CustomerException {
 		customerC = new PickUpCustomer(nameC, "04f601L76o", locationXC, locationYC);
 		assertEquals("04f601L76o", customerC.getMobileNumber());
-	}
+	}*/
 	
 	@Test (expected = CustomerException.class)
 	public void invalidCustomerLocationXPositiveTooHigh() throws CustomerException {
