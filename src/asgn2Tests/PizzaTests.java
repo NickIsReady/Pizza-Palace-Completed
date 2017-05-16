@@ -13,8 +13,6 @@ import asgn2Pizzas.Pizza;
 import asgn2Pizzas.PizzaTopping;
 import asgn2Pizzas.VegetarianPizza;
 
-import asgn2Exceptions.PizzaException;
-
 /**
  * A class that that tests the asgn2Pizzas.MargheritaPizza, asgn2Pizzas.VegetarianPizza, asgn2Pizzas.MeatLoversPizza classes. 
  * Note that an instance of asgn2Pizzas.MeatLoversPizza should be used to test the functionality of the 
@@ -37,11 +35,11 @@ public class PizzaTests {
 	private int quantityB = 2;
 	private int quantityC = 8;
 	private LocalTime orderTimeA = LocalTime.of(19, 10);
-	private LocalTime orderTimeB = LocalTime.of(20, 19);;
-	private LocalTime orderTimeC = LocalTime.of(22, 05);;
-	private LocalTime deliveryTimeA = LocalTime.of(19, 25);;
-	private LocalTime deliveryTimeB = LocalTime.of(20, 30);;
-	private LocalTime deliveryTimeC = LocalTime.of(22, 20);;
+	private LocalTime orderTimeB = LocalTime.of(20, 19);
+	private LocalTime orderTimeC = LocalTime.of(22, 05);
+	private LocalTime deliveryTimeA = LocalTime.of(19, 25);
+	private LocalTime deliveryTimeB = LocalTime.of(20, 30);
+	private LocalTime deliveryTimeC = LocalTime.of(22, 20);
 	private String typeA = "Margherita";
 	private String typeB = "Vegetarian";
 	private String typeC = "Meat Lovers";
