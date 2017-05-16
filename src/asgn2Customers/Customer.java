@@ -40,7 +40,7 @@ public abstract class Customer {
 	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{
 		if (name.isEmpty() || name.trim().length() == 0 || name.trim().length() > 20){
 			throw new CustomerException("Name is invalid!");
-		} else if (mobileNumber.isEmpty() || mobileNumber.charAt(0) != '0' || mobileNumber.contains("[a-zA-Z]+") == true){
+		} else if (mobileNumber.isEmpty() || mobileNumber.charAt(0) != '0' || mobileNumber.contains(".*[a-zA-Z]*.") == true){
 			throw new CustomerException("Mobile Number is invalid!");
 		} else if (locationX < -10 || locationX > 10 || locationY < -10 || locationY > 10){
 			throw new CustomerException("Location is too far away!");

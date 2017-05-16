@@ -6,6 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import asgn2Customers.Customer;
+import asgn2Customers.CustomerFactory;
+import asgn2Customers.DriverDeliveryCustomer;
+import asgn2Customers.DroneDeliveryCustomer;
+import asgn2Customers.PickUpCustomer;
+import asgn2Exceptions.CustomerException;
 
 /**
  * A class the that tests the asgn2Customers.CustomerFactory class.
@@ -15,7 +20,9 @@ import asgn2Customers.Customer;
  */
 public class CustomerFactoryTests {
 	
-	private Customer aCustomer;
+	private Customer customerA;
+	private Customer customerB;
+	private Customer customerC;
 	private String codeA = "DVC";
 	private String codeB = "DNC";
 	private String codeC = "PUC";
@@ -31,14 +38,24 @@ public class CustomerFactoryTests {
 	private int locationYA = 9;
 	private int locationYB = 8;
 	private int locationYC = 3;
-	
-	@Before
-	public void setupCustomerFactory() {
 		
+	@Test
+	public void testGetCustomerDriverDeliveryCustomer() throws CustomerException {
+		assertEquals(customerA = new DriverDeliveryCustomer(nameA, mobileNumberA, locationXA, locationYA), CustomerFactory.getCustomer(codeA, nameA, mobileNumberA, locationXA, locationYA));
 	}
 	
 	@Test
-	public void testGetCustomer() {
-		
+	public void testGetCustomerDroneDeliveryCustomer() throws CustomerException {
+		assertEquals(customerB = new DroneDeliveryCustomer(nameB, mobileNumberB, locationXB, locationYB), CustomerFactory.getCustomer(codeB, nameB, mobileNumberB, locationXB, locationYB));
+	}
+	
+	@Test
+	public void testGetCustomerPickUpCustomer() throws CustomerException {
+		assertEquals(customerC = new PickUpCustomer(nameC, mobileNumberC, locationXC, locationYC), CustomerFactory.getCustomer(codeC, nameC, mobileNumberC, locationXC, locationYC));
+	}
+	
+	@Test (expected = CustomerException.class)
+	public void testInvalidGetCustomerInvalidCode() throws CustomerException {
+		assertEquals(customerA = new DriverDeliveryCustomer(nameA, mobileNumberA, locationXA, locationYA), CustomerFactory.getCustomer("JVC", nameA, mobileNumberA, locationXA, locationYA));
 	}
 }
