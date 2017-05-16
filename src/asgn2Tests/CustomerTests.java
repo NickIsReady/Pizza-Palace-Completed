@@ -39,45 +39,63 @@ public class CustomerTests {
 	private int locationYC = -3;
 	
 	@Test (expected = CustomerException.class)
-	public void invalidCustomerName() throws CustomerException {
+	public void invalidCustomerNameEmpty() throws CustomerException {
 		customerA = new DriverDeliveryCustomer("", mobileNumberA, locationXA, locationYA);
-		customerB = new DroneDeliveryCustomer("       ", mobileNumberB, locationXB, locationYB);
-		customerC = new PickUpCustomer("abcdefghijklmnopqrstu", mobileNumberC, locationXC, locationYC);
 		assertEquals("", customerA.getName());
+	}
+	
+	@Test (expected = CustomerException.class)
+	public void invalidCustomerNameWhiteSpaces() throws CustomerException {
+		customerB = new DroneDeliveryCustomer("       ", mobileNumberB, locationXB, locationYB);
 		assertEquals("       ", customerB.getName());
+	}
+	
+	@Test (expected = CustomerException.class)
+	public void invalidCustomerNameTooLong() throws CustomerException {
+		customerC = new PickUpCustomer("abcdefghijklmnopqrstu", mobileNumberC, locationXC, locationYC);
 		assertEquals("abcdefghijklmnopqrstu", customerC.getName());
 	}
 	
 	@Test (expected = CustomerException.class)
-	public void invalidCustomerMobileNumber() throws CustomerException {
+	public void invalidCustomerMobileNumberEmpty() throws CustomerException {
 		customerA = new DriverDeliveryCustomer(nameA, "", locationXA, locationYA);
-		customerB = new DroneDeliveryCustomer(nameB, "1449500145", locationXB, locationYB);
-		customerC = new PickUpCustomer(nameC, "04f601L76o", locationXC, locationYC);
 		assertEquals("", customerA.getMobileNumber());
+	}
+	
+	/*@Test (expected = CustomerException.class)
+	public void invalidCustomerMobileNumberFirstNumberOne() throws CustomerException {
+		customerB = new DroneDeliveryCustomer(nameB, "1449500145", locationXB, locationYB);
 		assertEquals("1449500145", customerB.getMobileNumber());
+	}*/
+	
+	@Test (expected = CustomerException.class)
+	public void invalidCustomerMobileNumberLettersInNumber() throws CustomerException {
+		customerC = new PickUpCustomer(nameC, "04f601L76o", locationXC, locationYC);
 		assertEquals("04f601L76o", customerC.getMobileNumber());
-		
 	}
 	
 	@Test (expected = CustomerException.class)
-	public void invalidCustomerLocationX() throws CustomerException {
+	public void invalidCustomerLocationXPositiveTooHigh() throws CustomerException {
 		customerA = new DriverDeliveryCustomer(nameA, mobileNumberA, 12, locationYA);
-		customerB = new DroneDeliveryCustomer(nameB, mobileNumberB, 17, locationYB);
-		customerC = new PickUpCustomer(nameC, mobileNumberC, -13, locationYC);
 		assertEquals(12, customerA.getLocationX());
-		assertEquals(17, customerB.getLocationX());
+	}
+	
+	@Test (expected = CustomerException.class)
+	public void invalidCustomerLocationXNegativeTooHigh() throws CustomerException {
+		customerC = new PickUpCustomer(nameC, mobileNumberC, -13, locationYC);
 		assertEquals(-13, customerC.getLocationX());
 	}
 	
 	@Test (expected = CustomerException.class)
-	public void invalidCustomerLocationY() throws CustomerException {
+	public void invalidCustomerLocationYPositiveTooHigh() throws CustomerException {
 		customerA = new DriverDeliveryCustomer(nameA, mobileNumberA, locationXA, 19);
-		customerB = new DroneDeliveryCustomer(nameB, mobileNumberB, locationXB, -18);
-		customerC = new PickUpCustomer(nameC, mobileNumberC, locationXC, -13);
 		assertEquals(19, customerA.getLocationY());
+	}
+	
+	@Test (expected = CustomerException.class)
+	public void invalidCustomerLocationYNegativeTooHigh() throws CustomerException {
+		customerB = new DroneDeliveryCustomer(nameB, mobileNumberB, locationXB, -18);
 		assertEquals(-18, customerB.getLocationY());
-		assertEquals(-13, customerC.getLocationY());
-		
 	}
 	
 	/*@Test (expected = CustomerException.class)
@@ -112,9 +130,17 @@ public class CustomerTests {
 	}
 	
 	@Test
-	public void testGetCustomerType() {
+	public void testGetCustomerTypeDriverDelivery() {
 		assertEquals("Driver Delivery", customerA.getCustomerType());
+	}
+	
+	@Test
+	public void testGetCustomerTypeDroneDelivery() {
 		assertEquals("Drone Delivery", customerB.getCustomerType());
+	}
+	
+	@Test
+	public void testGetCustomerTypePickUp() {
 		assertEquals("Pick Up", customerC.getCustomerType());
 	}
 	
@@ -133,7 +159,17 @@ public class CustomerTests {
 	}
 	
 	@Test
-	public void testGetDeliveryDistance() {
+	public void testGetDeliveryDistanceDriverDelivery() {
+		assertEquals(11, customerA.getDeliveryDistance(), 0.1);
+	}
+	
+	@Test
+	public void testGetDeliveryDistanceDroneDelivery() {
+		assertEquals(10.6, customerB.getDeliveryDistance(), 0.1);
+	}
+	
+	@Test
+	public void testGetDeliveryDistancePickUp() {
 		assertEquals(0, customerC.getDeliveryDistance(), 0.1);
 	}
 }
