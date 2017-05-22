@@ -67,38 +67,44 @@ public class PizzaRestaurant {
 			
 			String line;
 			int i = 0;
+			String Type = null;
 			while((line = LogToRead.readLine()) != null) {
 				String lineArray[] = line.split(",");
-				if (customers.get(i).getName() != lineArray[2]//WORKS
-				|| customers.get(i).getLocationX() != Integer.parseInt(lineArray[5]) //WORKS
-				|| customers.get(i).getLocationY() != Integer.parseInt(lineArray[6])){//WORKS
+				if (!customers.get(i).getName().equals(lineArray[2])
+				|| customers.get(i).getLocationX() != Integer.parseInt(lineArray[5]) 
+				|| customers.get(i).getLocationY() != Integer.parseInt(lineArray[6])){
 					elementsInOrder = false;
 				}
-				if (customers.get(i).getMobileNumber() != lineArray[3]){
-					//DOESNT WORK. MAYBE TAKE 0 FROM LINEARRAY 3
+				if (!customers.get(i).getMobileNumber().equals(lineArray[3])){
+					elementsInOrder = false;
 					
 				}
-				if (customers.get(i).getCustomerType() != lineArray[4]){
-					//DOESNT WORK
+				if (customers.get(i).getCustomerType().equals("Pick Up")){
+					Type = "PUC";
+				} else if (customers.get(i).getCustomerType().equals("Driver Delivery")){
+					Type = "DVC";
+				} else if (customers.get(i).getCustomerType().equals("Drone Delivery")){
+					Type = "DNC";
 				}
-				
+				if (!Type.equals(lineArray[4])){
+					elementsInOrder = false;
+				}
+			
 				if (pizzas.get(i).getQuantity() != Integer.parseInt(lineArray[8])) {
 					elementsInOrder = false;
 				}
 				if (pizzas.get(i).getPizzaType().equals("Vegetarian")){
-					if ("PZV" != lineArray[7]) {
-						elementsInOrder = false;
-					}
+					Type = "PZV";
+					
+				} else if (pizzas.get(i).getPizzaType().equals("Margherita")){
+					Type = "PZM";
+
+				} else if (pizzas.get(i).getPizzaType().equals("Meat Lovers")){
+					Type = "PZL";
+
 				}
-				if (pizzas.get(i).getPizzaType().equals("Margherita")){
-					if ("PZM" != lineArray[7]) {
-						elementsInOrder = false;
-					}
-				}
-				if (pizzas.get(i).getPizzaType().equals("Meat Lovers")){
-					if ("PZL" != lineArray[7]) {
-						elementsInOrder = false;
-					}
+				if (!Type.equals(lineArray[7])){
+					elementsInOrder = false;
 				}
 				i++;
 			}
