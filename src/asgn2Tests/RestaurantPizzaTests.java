@@ -33,6 +33,19 @@ public class RestaurantPizzaTests {
 	public void TestProcessLogOne() throws CustomerException, PizzaException, LogHandlerException{
 		assertTrue(RestaurantA.processLog("logs/20170101.txt"));
 	}
+	@Test
+	public void TestProcessLogTwo() throws CustomerException, PizzaException, LogHandlerException{
+		assertTrue(RestaurantA.processLog("logs/20170102.txt"));
+	}
+	@Test
+	public void TestProcessLogThree() throws CustomerException, PizzaException, LogHandlerException{
+		assertTrue(RestaurantA.processLog("logs/20170103.txt"));
+	}
+	//Invalid Log files
+	@Test(expected = CustomerException.class)
+	public void TestProcessLogInvalid() throws CustomerException, PizzaException, LogHandlerException{
+		RestaurantA.processLog("logs/InvalidLog.txt");
+	}
 	
 	
 	

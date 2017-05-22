@@ -85,6 +85,8 @@ public class PizzaRestaurant {
 					Type = "DVC";
 				} else if (customers.get(i).getCustomerType().equals("Drone Delivery")){
 					Type = "DNC";
+				} else {
+					throw new LogHandlerException("Log file doesn't contain correct customer code.");
 				}
 				if (!Type.equals(lineArray[4])){
 					elementsInOrder = false;
@@ -95,13 +97,12 @@ public class PizzaRestaurant {
 				}
 				if (pizzas.get(i).getPizzaType().equals("Vegetarian")){
 					Type = "PZV";
-					
 				} else if (pizzas.get(i).getPizzaType().equals("Margherita")){
 					Type = "PZM";
-
 				} else if (pizzas.get(i).getPizzaType().equals("Meat Lovers")){
 					Type = "PZL";
-
+				} else {
+					throw new LogHandlerException("Log file doesn't contain correct pizza code.");
 				}
 				if (!Type.equals(lineArray[7])){
 					elementsInOrder = false;
