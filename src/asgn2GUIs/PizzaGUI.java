@@ -29,7 +29,7 @@ import javax.swing.*;
  * You can also use this class and asgn2Wizards.PizzaWizard to test your system as a whole
  * 
  * 
- * @author Nicholas Constantine (n9171550) and Person B
+ * @author Nicholas Constantine (n9171550) and Thomas Shortt (n8854742)
  *
  */
 public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionListener {

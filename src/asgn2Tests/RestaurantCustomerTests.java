@@ -19,6 +19,7 @@ import asgn2Restaurant.PizzaRestaurant;
 public class RestaurantCustomerTests {
 	
 	private PizzaRestaurant restaurant;
+	private int index = 1;
 	
 	@Before
 	public void setupRestaurantCustomer() {
@@ -36,7 +37,17 @@ public class RestaurantCustomerTests {
 	}
 	
 	@Test
+	public void testGetCustomerByIndexSameAsLog() {
+		
+	}
+	
+	@Test
 	public void testGetNumCustomerOrders() {
+		
+	}
+	
+	@Test
+	public void testGetNumCustomerOrdersSameAsLog() {
 		
 	}
 	
@@ -46,7 +57,9 @@ public class RestaurantCustomerTests {
 	}
 	
 	@Test
-	public void testResetDetails() {
-		
+	public void testResetDetails() throws CustomerException {
+		assertEquals(0, restaurant.getCustomerByIndex(index));
+		assertEquals(0, restaurant.getNumCustomerOrders());
+		assertEquals(0, restaurant.getTotalDeliveryDistance(), 0.1);
 	}
 }

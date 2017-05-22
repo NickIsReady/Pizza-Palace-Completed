@@ -118,15 +118,11 @@ public class CustomerTests {
 	@Test
 	public void testGetName() {
 		assertEquals(nameA, customerA.getName());
-		assertEquals(nameB, customerB.getName());
-		assertEquals(nameC, customerC.getName());
 	}
 	
 	@Test
 	public void testGetMobileNumber() {
 		assertEquals(mobileNumberA, customerA.getMobileNumber());
-		assertEquals(mobileNumberB, customerB.getMobileNumber());
-		assertEquals(mobileNumberC, customerC.getMobileNumber());
 	}
 	
 	@Test
@@ -145,16 +141,22 @@ public class CustomerTests {
 	}
 	
 	@Test
-	public void testGetLocationX() {
+	public void testGetLocationXPositive() {
 		assertEquals(locationXA, customerA.getLocationX());
-		assertEquals(locationXB, customerB.getLocationX());
+	}
+	
+	@Test
+	public void testGetLocationXNegative() {
 		assertEquals(locationXC, customerC.getLocationX());
 	}
 	
 	@Test
-	public void testGetLocationY() {
+	public void testGetLocationYPositive() {
 		assertEquals(locationYA, customerA.getLocationY());
-		assertEquals(locationYB, customerB.getLocationY());
+	}
+	
+	@Test
+	public void testGetLocationYNegative() {
 		assertEquals(locationYC, customerC.getLocationY());
 	}
 	
