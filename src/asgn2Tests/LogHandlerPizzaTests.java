@@ -31,9 +31,17 @@ public class LogHandlerPizzaTests {
 	String line = null;
 	BufferedReader LogToRead;
 	
+	Pizza FirstPizza;
+	Pizza SecondPizza;
+	Pizza ThirdPizza;
+	
 	@Before
-	public void setupLogFile() throws FileNotFoundException{
+	public void setupLogFile() throws FileNotFoundException, PizzaException{
 		LogToRead = new BufferedReader(new FileReader("logs/20170101.txt"));
+		
+		FirstPizza = new VegetarianPizza(2, LocalTime.of(19, 00), LocalTime.of(19, 20));
+		SecondPizza = new MargheritaPizza(1, LocalTime.of(20, 00), LocalTime.of(20, 25));
+		ThirdPizza = new MeatLoversPizza(3, LocalTime.of(21, 00), LocalTime.of(21, 35));
 	}
 	
 	//Process log files
@@ -58,14 +66,12 @@ public class LogHandlerPizzaTests {
 	@Test
 	public void CreateFirstPizzaTest() throws IOException, PizzaException, LogHandlerException{
 		line = LogToRead.readLine();
-		Pizza FirstPizza = new VegetarianPizza(2, LocalTime.of(19, 00), LocalTime.of(19, 20));
 		assertEquals(LogHandler.createPizza(line), FirstPizza);
 	}
 	@Test
 	public void CreateSecondPizzaTest() throws IOException, PizzaException, LogHandlerException{
 		line = LogToRead.readLine();
 		line = LogToRead.readLine();
-		Pizza SecondPizza = new MargheritaPizza(1, LocalTime.of(20, 00), LocalTime.of(20, 25));
 		assertEquals(LogHandler.createPizza(line), SecondPizza);
 	}
 	@Test
@@ -73,7 +79,6 @@ public class LogHandlerPizzaTests {
 		line = LogToRead.readLine();
 		line = LogToRead.readLine();
 		line = LogToRead.readLine();
-		Pizza ThirdPizza = new MeatLoversPizza(3, LocalTime.of(21, 00), LocalTime.of(21, 35));
 		assertEquals(LogHandler.createPizza(line), ThirdPizza);
 
 	}

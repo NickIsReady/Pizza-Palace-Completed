@@ -27,9 +27,17 @@ public class RestaurantPizzaTests {
 	
 	private PizzaRestaurant RestaurantA;
 	
+	Pizza FirstPizza;
+	Pizza SecondPizza;
+	Pizza ThirdPizza;
+	
 	@Before
 	public void InitialisePizzaRestuarant() throws PizzaException{
 		RestaurantA = new PizzaRestaurant();
+		
+		FirstPizza = new VegetarianPizza(2, LocalTime.of(19, 00), LocalTime.of(19, 20));
+		SecondPizza = new MargheritaPizza(1, LocalTime.of(20, 00), LocalTime.of(20, 25));
+		ThirdPizza = new MeatLoversPizza(3, LocalTime.of(21, 00), LocalTime.of(21, 35));
 	}
 	
 	//Process log files
@@ -52,16 +60,20 @@ public class RestaurantPizzaTests {
 	}
 	
 	@Test 
-	public void GetPizzaByIndexLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
+	public void GetPizzaByIndexZeroLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
 		RestaurantA.processLog("logs/20170101.txt");
-		
-		Pizza FirstPizza = new VegetarianPizza(2, LocalTime.of(19, 00), LocalTime.of(19, 20));
 		assertEquals(RestaurantA.getPizzaByIndex(0), FirstPizza);
-		
-		Pizza SecondPizza = new MargheritaPizza(1, LocalTime.of(20, 00), LocalTime.of(20, 25));
+	}
+	
+	@Test 
+	public void GetPizzaByIndexOneLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
+		RestaurantA.processLog("logs/20170101.txt");
 		assertEquals(RestaurantA.getPizzaByIndex(1), SecondPizza);
-		
-		Pizza ThirdPizza = new MeatLoversPizza(3, LocalTime.of(21, 00), LocalTime.of(21, 35));
+	}
+	
+	@Test 
+	public void GetPizzaByIndexTwoLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
+		RestaurantA.processLog("logs/20170101.txt");
 		assertEquals(RestaurantA.getPizzaByIndex(2), ThirdPizza);
 	}
 	
