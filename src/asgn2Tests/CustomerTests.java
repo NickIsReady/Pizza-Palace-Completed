@@ -62,11 +62,11 @@ public class CustomerTests {
 		assertEquals("", customerA.getMobileNumber());
 	}
 	
-	/*@Test (expected = CustomerException.class)
+	@Test (expected = CustomerException.class)
 	public void invalidCustomerMobileNumberFirstNumberOne() throws CustomerException {
 		customerB = new DroneDeliveryCustomer(nameB, "1449500145", locationXB, locationYB);
 		assertEquals("1449500145", customerB.getMobileNumber());
-	}*/
+	}
 	
 	@Test (expected = CustomerException.class)
 	public void invalidCustomerMobileNumberLettersInNumber() throws CustomerException {
