@@ -49,7 +49,7 @@ public class LogHandler {
 				CustomerList.add(createCustomer(line));
 			}
 			LogToRead.close();
-		} catch (CustomerException | LogHandlerException | IOException e) {
+		} catch (LogHandlerException | IOException e) {
 			System.out.println(e.getMessage());
         	e.printStackTrace();
 		}
@@ -77,7 +77,7 @@ public class LogHandler {
 				pizzaList.add(createPizza(line));
 			}
 			LogToRead.close();
-		} catch (PizzaException | LogHandlerException | IOException e) {
+		} catch (LogHandlerException | IOException e) {
 			System.out.println(e.getMessage());
         	e.printStackTrace();
 		}

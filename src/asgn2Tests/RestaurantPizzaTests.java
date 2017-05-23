@@ -45,12 +45,6 @@ public class RestaurantPizzaTests {
 		assertTrue(RestaurantA.processLog("logs/20170103.txt"));
 	}
 	
-	//Invalid Log files
-	@Test (expected = PizzaException.class)
-	public void TestProcessLogInvalid() throws CustomerException, PizzaException, LogHandlerException{
-		assertTrue(RestaurantA.processLog("logs/InvalidLog.txt"));     
-	}
-	
 	@Test 
 	public void GetPizzaByIndexLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
 		RestaurantA.processLog("logs/20170101.txt");
