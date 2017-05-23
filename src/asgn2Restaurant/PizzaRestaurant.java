@@ -21,7 +21,7 @@ import asgn2Restaurant.LogHandler;
  *  Any exceptions raised by one of the methods called by this class should be passed to asgn2GUIs.PizzaGUI so that it can be shown to
  *  the user.
  * 
- * @author  and Nicholas Constantine (n9171550)
+ * @author Thomas Shortt (n8854742) and Nicholas Constantine (n9171550)
  *
  */
 public class PizzaRestaurant {
