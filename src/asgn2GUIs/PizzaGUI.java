@@ -37,6 +37,12 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	private PizzaRestaurant restaurant;
 	
+	private JTable CustomerTable;
+	private JTable PizzaTable;
+	
+	private JButton LoadLog;
+	private JFileChooser ChooseLog;
+	
 	/**
 	 * Creates a new Pizza GUI with the specified title 
 	 * @param title - The title for the supertype JFrame
@@ -51,6 +57,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		
 		//Display the window. 
 		frame.setPreferredSize(new Dimension(1080, 720));
+		frame.setResizable(true);
 		frame.setLocation(new Point(200, 200));
 		
 		frame.getContentPane().add(label);
@@ -65,7 +72,17 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	@Override
 	public void run() {
-		// TO DO
+		//code to press button goes here
+		//and choose file
+		restaurant = new PizzaRestaurant();
+		//restaurant.processLog(filename)
+		//component such as a JTextField or JTable is suitable to display this information.
+	
+		/* The information needs to be user friendly, so the codes 
+		used to describe pizzas and customers should be translated 
+		to into pizza and customer ‘types’ using descriptive language 
+		(Margherita, Meat Lovers, Vegetarian/Pick Up, Driver Delivery, Drone Delivery). */
+	
 	}
 
 	
