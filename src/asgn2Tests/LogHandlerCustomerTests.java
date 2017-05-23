@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,10 +27,25 @@ import asgn2Restaurant.LogHandler;
 public class LogHandlerCustomerTests {
 	
 	private String file = "logs/20170101.txt";
+	private Customer customerA;
+	private Customer customerB;
+	private Customer customerC;
+	private ArrayList<Customer> customerList;
+	
+	@Before
+	public void setupCustomers() throws CustomerException {
+		customerA = new DriverDeliveryCustomer("Casey Jones", "0123456789", 5, 5);
+		customerB = new DroneDeliveryCustomer("April O'Neal", "0987654321", 3, 4);
+		customerC = new PickUpCustomer("Oroku Saki", "0111222333", 0, 0);
+		customerList = new ArrayList<Customer>();
+	}
 	
 	@Test
-	public void testPopulateCustomerDataset() {
-		
+	public void testPopulateCustomerDataset() throws CustomerException, LogHandlerException {
+		customerList.add(customerA);
+		customerList.add(customerB);
+		customerList.add(customerC);
+		assertEquals(customerList, LogHandler.populateCustomerDataset(file));
 	}
 	
 	@Test
@@ -37,8 +53,7 @@ public class LogHandlerCustomerTests {
 		BufferedReader LogToRead = new BufferedReader(new FileReader(file));
 		String line;
 		line = LogToRead.readLine();
-		Customer customer = new DriverDeliveryCustomer("Casey Jones", "0123456789", 5, 5);
-		assertEquals(customer, LogHandler.createCustomer(line));
+		assertEquals(customerA, LogHandler.createCustomer(line));
 	}
 	
 	@Test
@@ -47,8 +62,7 @@ public class LogHandlerCustomerTests {
 		String line;
 		line = LogToRead.readLine();
 		line = LogToRead.readLine();
-		Customer customer = new DroneDeliveryCustomer("April O'Neal", "0987654321", 3, 4);
-		assertEquals(customer, LogHandler.createCustomer(line));
+		assertEquals(customerB, LogHandler.createCustomer(line));
 	}
 	
 	@Test
@@ -58,7 +72,6 @@ public class LogHandlerCustomerTests {
 		line = LogToRead.readLine();
 		line = LogToRead.readLine();
 		line = LogToRead.readLine();
-		Customer customer = new PickUpCustomer("Oroku Saki", "0111222333", 0, 0);
-		assertEquals(customer, LogHandler.createCustomer(line));
+		assertEquals(customerC, LogHandler.createCustomer(line));
 	}
 }
