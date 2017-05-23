@@ -29,7 +29,7 @@ public class LogHandlerCustomerTests {
 	
 	@Test
 	public void testPopulateCustomerDataset() {
-		assert
+		
 	}
 	
 	@Test
