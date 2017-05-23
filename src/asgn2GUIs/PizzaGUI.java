@@ -42,7 +42,19 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	 * @param title - The title for the supertype JFrame
 	 */
 	public PizzaGUI(String title) {
-		// TO DO
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		//Create and set up the window. 
+		JFrame frame = new JFrame(title);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		//Add the label. 
+		JLabel label = new JLabel("Pizza Palace");
+		frame.getContentPane().add(label);
+		//Display the window. 
+		frame.setPreferredSize(new Dimension(300, 100));
+		frame.setLocation(new Point(200, 200));
+		frame.pack(); 
+		frame.setVisible(true); 
+		
 	}
 
 	
