@@ -21,7 +21,7 @@ import java.time.LocalTime;
  * and Customer object - either as an individual Pizza/Customer object or as an
  * ArrayList of Pizza/Customer objects.
  * 
- * @author Nicholas Constantine (n9171550) and Thomas Shortt (n8854742)
+ * @author Thomas Shortt (n8854742) and Nicholas Constantine (n9171550)
  *
  */
 public class LogHandler {
