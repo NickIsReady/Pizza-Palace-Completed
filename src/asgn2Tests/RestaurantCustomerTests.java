@@ -26,11 +26,17 @@ public class RestaurantCustomerTests {
 	private String file = "logs/20170101.txt";
 	private String otherFileA = "logs/20170102.txt";
 	private String otherFileB = "logs/20170103.txt";
+	private String invalidFile = "logs/InvalidLog.txt";
 	
 	@Before
 	public void setupRestaurantCustomer() {
 		restaurant = new PizzaRestaurant();
 	}
+	
+	/*@Test (expected = CustomerException.class)
+	public void invalidProcessLog() throws CustomerException, PizzaException, LogHandlerException {
+		assertEquals(true, restaurant.processLog(invalidFile));
+	}*/
 	
 	@Test
 	public void testProcessLogFirstFile() throws CustomerException, PizzaException, LogHandlerException {

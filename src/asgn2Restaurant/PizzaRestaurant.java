@@ -114,7 +114,7 @@ public class PizzaRestaurant {
 				throw new LogHandlerException("Elements are out of order");
 			}
 
-		} catch (CustomerException | LogHandlerException | PizzaException | IOException e){
+		} catch (IOException e){
 			System.out.println(e.getMessage());
         	e.printStackTrace();
         	FileProcessedCorrectly = false;
