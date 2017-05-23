@@ -27,6 +27,7 @@ import asgn2Restaurant.LogHandler;
 public class LogHandlerCustomerTests {
 	
 	private String file = "logs/20170101.txt";
+	private String invalidFile = "logs/InvalidEmptyLog.txt";
 	private Customer customerA;
 	private Customer customerB;
 	private Customer customerC;
@@ -46,6 +47,14 @@ public class LogHandlerCustomerTests {
 		customerList.add(customerB);
 		customerList.add(customerC);
 		assertEquals(customerList, LogHandler.populateCustomerDataset(file));
+	}
+	
+	@Test (expected = LogHandlerException.class)
+	public void testInvalidPopulateCustomerDataset() throws CustomerException, LogHandlerException {
+		customerList.add(customerA);
+		customerList.add(customerB);
+		customerList.add(customerC);
+		assertEquals(customerList, LogHandler.populateCustomerDataset(invalidFile));
 	}
 	
 	@Test

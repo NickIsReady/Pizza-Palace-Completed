@@ -34,7 +34,7 @@ public class RestaurantCustomerTests {
 	}
 	
 	@Test (expected = CustomerException.class)
-	public void invalidProcessLog() throws CustomerException, PizzaException, LogHandlerException {
+	public void testInvalidProcessLog() throws CustomerException, PizzaException, LogHandlerException {
 		assertEquals(true, restaurant.processLog(invalidFile));
 	}
 	

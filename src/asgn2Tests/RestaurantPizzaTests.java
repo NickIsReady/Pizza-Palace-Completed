@@ -56,7 +56,7 @@ public class RestaurantPizzaTests {
 	//Invalid Log files
 	@Test (expected = PizzaException.class)
 	public void TestProcessLogInvalid() throws PizzaException, LogHandlerException, CustomerException{
-		assertTrue(RestaurantA.processLog("logs/InvalidLog.txt"));
+		assertTrue(RestaurantA.processLog("logs/InvalidPizzaLog.txt"));
 	}
 	
 	@Test 
