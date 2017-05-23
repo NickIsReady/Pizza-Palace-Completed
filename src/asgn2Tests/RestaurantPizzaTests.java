@@ -2,6 +2,7 @@ package asgn2Tests;
 
 
 import java.time.LocalTime;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -44,6 +45,11 @@ public class RestaurantPizzaTests {
 	public void TestProcessLogThree() throws CustomerException, PizzaException, LogHandlerException{
 		assertTrue(RestaurantA.processLog("logs/20170103.txt"));
 	}
+	//Invalid Log files
+	@Test (expected = PizzaException.class)
+	public void TestProcessLogInvalid() throws PizzaException, LogHandlerException, CustomerException{
+		assertTrue(RestaurantA.processLog("logs/InvalidLog.txt"));
+	}
 	
 	@Test 
 	public void GetPizzaByIndexLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
@@ -63,12 +69,14 @@ public class RestaurantPizzaTests {
 	@Test(expected = PizzaException.class)
 	public void IndexOutOfRangeNegative() throws CustomerException, PizzaException, LogHandlerException{
 		RestaurantA.processLog("logs/20170101.txt");
+		@SuppressWarnings("unused")
 		Pizza InvalidPizza = RestaurantA.getPizzaByIndex(-1);
 	}
 	
 	@Test(expected = PizzaException.class)
 	public void IndexOutOfRangeAboveMax() throws CustomerException, PizzaException, LogHandlerException{
 		RestaurantA.processLog("logs/20170101.txt");
+		@SuppressWarnings("unused")
 		Pizza InvalidPizza = RestaurantA.getPizzaByIndex(5);
 	}
 	

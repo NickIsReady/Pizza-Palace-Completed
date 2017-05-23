@@ -27,13 +27,10 @@ public class LogHandlerCustomerTests {
 	
 	private String file = "logs/20170101.txt";
 	
-	@Test
-	public void testPopulateCustomerDataset() {
-		
-	}
 	
 	@Test
 	public void testCreateCustomerDriverDeliveryCustomer() throws CustomerException, LogHandlerException, IOException {
+		@SuppressWarnings("resource")
 		BufferedReader LogToRead = new BufferedReader(new FileReader(file));
 		String line;
 		line = LogToRead.readLine();
@@ -43,6 +40,7 @@ public class LogHandlerCustomerTests {
 	
 	@Test
 	public void testCreateCustomerDroneDeliveryCustomer() throws CustomerException, LogHandlerException, IOException {
+		@SuppressWarnings("resource")
 		BufferedReader LogToRead = new BufferedReader(new FileReader(file));
 		String line;
 		line = LogToRead.readLine();
@@ -53,6 +51,7 @@ public class LogHandlerCustomerTests {
 	
 	@Test
 	public void testCreateCustomerPickUpCustomer() throws CustomerException, LogHandlerException, IOException {
+		@SuppressWarnings("resource")
 		BufferedReader LogToRead = new BufferedReader(new FileReader(file));
 		String line;
 		line = LogToRead.readLine();
