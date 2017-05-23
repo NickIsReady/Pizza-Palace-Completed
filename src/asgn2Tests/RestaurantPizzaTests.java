@@ -2,6 +2,7 @@ package asgn2Tests;
 
 
 import java.time.LocalTime;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -19,16 +20,24 @@ import asgn2Restaurant.PizzaRestaurant;
  * A class that tests the methods relating to the handling of Pizza objects in the asgn2Restaurant.PizzaRestaurant class as well as
  * processLog and resetDetails.
  * 
- * @author Person B
+ * @author Person A and Nicholas Constantine (n9171550)
  *
  */
 public class RestaurantPizzaTests {
 	
 	private PizzaRestaurant RestaurantA;
 	
+	Pizza FirstPizza;
+	Pizza SecondPizza;
+	Pizza ThirdPizza;
+	
 	@Before
 	public void InitialisePizzaRestuarant() throws PizzaException{
 		RestaurantA = new PizzaRestaurant();
+		
+		FirstPizza = new VegetarianPizza(2, LocalTime.of(19, 00), LocalTime.of(19, 20));
+		SecondPizza = new MargheritaPizza(1, LocalTime.of(20, 00), LocalTime.of(20, 25));
+		ThirdPizza = new MeatLoversPizza(3, LocalTime.of(21, 00), LocalTime.of(21, 35));
 	}
 	
 	//Process log files
@@ -44,18 +53,27 @@ public class RestaurantPizzaTests {
 	public void TestProcessLogThree() throws CustomerException, PizzaException, LogHandlerException{
 		assertTrue(RestaurantA.processLog("logs/20170103.txt"));
 	}
+	//Invalid Log files
+	@Test (expected = PizzaException.class)
+	public void TestProcessLogInvalid() throws PizzaException, LogHandlerException, CustomerException{
+		assertTrue(RestaurantA.processLog("logs/InvalidLog.txt"));
+	}
 	
 	@Test 
-	public void GetPizzaByIndexLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
+	public void GetPizzaByIndexZeroLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
 		RestaurantA.processLog("logs/20170101.txt");
-		
-		Pizza FirstPizza = new VegetarianPizza(2, LocalTime.of(19, 00), LocalTime.of(19, 20));
 		assertEquals(RestaurantA.getPizzaByIndex(0), FirstPizza);
-		
-		Pizza SecondPizza = new MargheritaPizza(1, LocalTime.of(20, 00), LocalTime.of(20, 25));
+	}
+	
+	@Test 
+	public void GetPizzaByIndexOneLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
+		RestaurantA.processLog("logs/20170101.txt");
 		assertEquals(RestaurantA.getPizzaByIndex(1), SecondPizza);
-		
-		Pizza ThirdPizza = new MeatLoversPizza(3, LocalTime.of(21, 00), LocalTime.of(21, 35));
+	}
+	
+	@Test 
+	public void GetPizzaByIndexTwoLogFileOne() throws CustomerException, PizzaException, LogHandlerException{
+		RestaurantA.processLog("logs/20170101.txt");
 		assertEquals(RestaurantA.getPizzaByIndex(2), ThirdPizza);
 	}
 	
@@ -63,12 +81,14 @@ public class RestaurantPizzaTests {
 	@Test(expected = PizzaException.class)
 	public void IndexOutOfRangeNegative() throws CustomerException, PizzaException, LogHandlerException{
 		RestaurantA.processLog("logs/20170101.txt");
+		@SuppressWarnings("unused")
 		Pizza InvalidPizza = RestaurantA.getPizzaByIndex(-1);
 	}
 	
 	@Test(expected = PizzaException.class)
 	public void IndexOutOfRangeAboveMax() throws CustomerException, PizzaException, LogHandlerException{
 		RestaurantA.processLog("logs/20170101.txt");
+		@SuppressWarnings("unused")
 		Pizza InvalidPizza = RestaurantA.getPizzaByIndex(5);
 	}
 	
