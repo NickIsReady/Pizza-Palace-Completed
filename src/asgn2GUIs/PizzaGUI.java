@@ -48,10 +48,15 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		//Add the label. 
 		JLabel label = new JLabel("Pizza Palace");
-		frame.getContentPane().add(label);
+		
 		//Display the window. 
-		frame.setPreferredSize(new Dimension(300, 100));
+		frame.setPreferredSize(new Dimension(1080, 720));
 		frame.setLocation(new Point(200, 200));
+		
+		frame.getContentPane().add(label);
+		frame.getContentPane().setBackground(Color.white);
+		
+
 		frame.pack(); 
 		frame.setVisible(true); 
 		
