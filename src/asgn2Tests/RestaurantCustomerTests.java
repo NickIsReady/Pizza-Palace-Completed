@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import asgn2Customers.Customer;
+import asgn2Customers.DriverDeliveryCustomer;
+import asgn2Customers.DroneDeliveryCustomer;
+import asgn2Customers.PickUpCustomer;
 import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
@@ -19,7 +23,9 @@ import asgn2Restaurant.PizzaRestaurant;
 public class RestaurantCustomerTests {
 	
 	private PizzaRestaurant restaurant;
-	private int index = 1;
+	private String file = "logs/20170101.txt";
+	private String otherFileA = "logs/20170102.txt";
+	private String otherFileB = "logs/20170103.txt";
 	
 	@Before
 	public void setupRestaurantCustomer() {
@@ -27,39 +33,68 @@ public class RestaurantCustomerTests {
 	}
 	
 	@Test
-	public void testProcessLog() throws CustomerException, PizzaException, LogHandlerException {
-		assertEquals(true, restaurant.processLog("logs/20170101.txt"));
+	public void testProcessLogFirstFile() throws CustomerException, PizzaException, LogHandlerException {
+		assertEquals(true, restaurant.processLog(file));
 	}
 	
 	@Test
-	public void testGetCustomerByIndex() {
-		
+	public void testProcessLogSecondFile() throws CustomerException, PizzaException, LogHandlerException {
+		assertEquals(true, restaurant.processLog(otherFileA));
 	}
 	
 	@Test
-	public void testGetCustomerByIndexSameAsLog() {
-		
+	public void testProcessLogThirdFile() throws CustomerException, PizzaException, LogHandlerException {
+		assertEquals(true, restaurant.processLog(otherFileB));
 	}
 	
 	@Test
-	public void testGetNumCustomerOrders() {
-		
+	public void testGetCustomerByIndexDriverDeliveryCustomer() throws CustomerException, PizzaException, LogHandlerException {
+		restaurant.processLog(file);
+		Customer customer = new DriverDeliveryCustomer("Casey Jones", "0123456789", 5, 5);
+		assertEquals(customer, restaurant.getCustomerByIndex(0));
 	}
 	
 	@Test
-	public void testGetNumCustomerOrdersSameAsLog() {
-		
+	public void testGetCustomerByIndexDroneDeliveryCustomer() throws CustomerException, PizzaException, LogHandlerException {
+		restaurant.processLog(file);
+		Customer customer = new DroneDeliveryCustomer("April O'Neal", "0987654321", 3, 4);
+		assertEquals(customer, restaurant.getCustomerByIndex(1));
 	}
 	
 	@Test
-	public void testGetTotalDeliveryDistance() {
-		
+	public void testGetCustomerByIndexPickUpCustomer() throws CustomerException, PizzaException, LogHandlerException {
+		restaurant.processLog(file);
+		Customer customer = new PickUpCustomer("Oroku Saki", "0111222333", 0, 0);
+		assertEquals(customer, restaurant.getCustomerByIndex(2));
 	}
 	
 	@Test
-	public void testResetDetails() throws CustomerException {
-		assertEquals(0, restaurant.getCustomerByIndex(index));
+	public void testGetNumCustomerOrders() throws CustomerException, PizzaException, LogHandlerException {
+		restaurant.processLog(file);
+		assertEquals(3, restaurant.getNumCustomerOrders());
+	}
+
+	@Test
+	public void testGetTotalDeliveryDistance() throws CustomerException, PizzaException, LogHandlerException {
+		restaurant.processLog(file);
+		double customerADistance = restaurant.getCustomerByIndex(0).getDeliveryDistance();
+		double customerBDistance = restaurant.getCustomerByIndex(1).getDeliveryDistance();
+		double customerCDistance = restaurant.getCustomerByIndex(2).getDeliveryDistance();
+		double total = customerADistance + customerBDistance + customerCDistance;
+		assertEquals(total, restaurant.getTotalDeliveryDistance(), 0.1);
+	}
+	
+	@Test
+	public void testResetDetailsNumCustomerOrders() throws CustomerException, PizzaException, LogHandlerException {
+		restaurant.processLog(file);
+		restaurant.resetDetails();
 		assertEquals(0, restaurant.getNumCustomerOrders());
+	}
+	
+	@Test
+	public void testResetDetailsTotalDeliveryDistance() throws CustomerException, PizzaException, LogHandlerException {
+		restaurant.processLog(file);
+		restaurant.resetDetails();
 		assertEquals(0, restaurant.getTotalDeliveryDistance(), 0.1);
 	}
 }
