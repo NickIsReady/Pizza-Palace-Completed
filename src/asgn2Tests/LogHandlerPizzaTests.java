@@ -84,10 +84,10 @@ public class LogHandlerPizzaTests {
 	}
 	
 	//Invalid Log files
-	@Test (expected = PizzaException.class)
+	@Test (expected = LogHandlerException.class)
 	public void TestProcessLogInvalid() throws PizzaException, LogHandlerException{
 		@SuppressWarnings("unused")
-		ArrayList<Pizza> PizzaTest = LogHandler.populatePizzaDataset("logs/InvalidLog.txt");
+		ArrayList<Pizza> PizzaTest = LogHandler.populatePizzaDataset("logs/InvalidEmptyLog.txt");
 	}
 	
 }

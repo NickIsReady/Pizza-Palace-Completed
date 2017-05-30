@@ -51,7 +51,7 @@ public abstract class Pizza  {
 			throw new PizzaException("Delivery time is invalid!");
 		} else if (type.equals("Margherita") == false && type.equals("Vegetarian") == false && type.equals("Meat Lovers") == false) {
 			throw new PizzaException("Pizza type is invalid!");
-		} else if (price < 0.00) {
+		} else if ((type.equals("Margherita") && price != 8.00) || (type.equals("Vegetarian") && price != 10.00) || (type.equals("Meat Lovers") && price != 12.00)) {
 			throw new PizzaException("Price is invalid!");
 		}
 		this.quantity = quantity;
