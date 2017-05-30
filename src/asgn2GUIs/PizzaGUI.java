@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.text.DefaultCaret;
 
 import asgn2Customers.Customer;
+import asgn2Exceptions.CustomerException;
+import asgn2Exceptions.LogHandlerException;
+import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
 import asgn2Restaurant.PizzaRestaurant;
 
@@ -94,7 +97,18 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		used to describe pizzas and customers should be translated 
 		to into pizza and customer ‘types’ using descriptive language 
 		(Margherita, Meat Lovers, Vegetarian/Pick Up, Driver Delivery, Drone Delivery). */
-		
+		try {
+			if (restaurant.processLog(filename) == true) {
+				//Fill Customer table with customer information from log
+				
+				//Fill Pizza table with order information from log
+				
+				//Display the total distance and profit made from log
+			}
+		} catch (CustomerException | PizzaException | LogHandlerException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	
 	}
 
