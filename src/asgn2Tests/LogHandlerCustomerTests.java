@@ -28,6 +28,7 @@ public class LogHandlerCustomerTests {
 	
 	private String file = "logs/20170101.txt";
 	private String invalidFile = "logs/InvalidEmptyLog.txt";
+	private String invalidFileB = "logs/InvalidCustomerShortenedLog.txt";
 	private Customer customerA;
 	private Customer customerB;
 	private Customer customerC;
@@ -77,6 +78,16 @@ public class LogHandlerCustomerTests {
 	@Test
 	public void testCreateCustomerPickUpCustomer() throws CustomerException, LogHandlerException, IOException {
 		BufferedReader LogToRead = new BufferedReader(new FileReader(file));
+		String line;
+		line = LogToRead.readLine();
+		line = LogToRead.readLine();
+		line = LogToRead.readLine();
+		assertEquals(customerC, LogHandler.createCustomer(line));
+	}
+	
+	@Test (expected = LogHandlerException.class)
+	public void invalidTestCreateCustomerPickUpCustomerMissingElement() throws CustomerException, LogHandlerException, IOException {
+		BufferedReader LogToRead = new BufferedReader(new FileReader(invalidFileB));
 		String line;
 		line = LogToRead.readLine();
 		line = LogToRead.readLine();

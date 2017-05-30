@@ -90,4 +90,14 @@ public class LogHandlerPizzaTests {
 		ArrayList<Pizza> PizzaTest = LogHandler.populatePizzaDataset("logs/InvalidEmptyLog.txt");
 	}
 	
+	@Test (expected = LogHandlerException.class)
+	public void TestCreatePizzaInvalid() throws IOException, PizzaException, LogHandlerException{
+		LogToRead = new BufferedReader(new FileReader("logs/InvalidPizzaShortenedLog.txt"));
+		line = LogToRead.readLine();
+		line = LogToRead.readLine();
+		line = LogToRead.readLine();
+		assertEquals(LogHandler.createPizza(line), ThirdPizza);
+
+	}
+	
 }
