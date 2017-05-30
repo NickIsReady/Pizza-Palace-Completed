@@ -40,8 +40,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	private PizzaRestaurant restaurant;
 	
-	private JTable CustomerTable;
-	private JTable PizzaTable;
+	private JTable OrderTable;
 	private JTextField TotalsDisplay;
 	
 	private JButton LoadLog;
@@ -61,8 +60,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		//Add the label. 
 		JLabel label = new JLabel("Pizza Palace");
 		
-		CustomerTable = new JTable();
-		PizzaTable = new JTable();
+		OrderTable = new JTable();
 		TotalsDisplay = new JTextField();
 		
 		LoadLog = new JButton("Load Log");
@@ -77,10 +75,14 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		
 		frame.getContentPane().add(label);
 		frame.getContentPane().setBackground(Color.white);
-		
+		frame.getContentPane().add(OrderTable);
+		frame.getContentPane().add(TotalsDisplay);
+		frame.getContentPane().add(LoadLog);
+		frame.getContentPane().add(CalculateTotals);
+		frame.getContentPane().add(ResetButton);
 
 		frame.pack(); 
-		frame.setVisible(true); 
+		frame.setVisible(true);
 		
 	}
 
@@ -89,6 +91,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	public void run() {
 		//code to press button goes here
 		//and choose file
+		String filename = "";
 		restaurant = new PizzaRestaurant();
 		//restaurant.processLog(filename)
 		//component such as a JTextField or JTable is suitable to display this information.
