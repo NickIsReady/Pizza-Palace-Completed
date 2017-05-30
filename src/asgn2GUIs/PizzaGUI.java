@@ -39,8 +39,11 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	
 	private JTable CustomerTable;
 	private JTable PizzaTable;
+	private JTextField TotalsDisplay;
 	
 	private JButton LoadLog;
+	private JButton CalculateTotals;
+	private JButton ResetButton;
 	private JFileChooser ChooseLog;
 	
 	/**
@@ -54,6 +57,15 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		//Add the label. 
 		JLabel label = new JLabel("Pizza Palace");
+		
+		CustomerTable = new JTable();
+		PizzaTable = new JTable();
+		TotalsDisplay = new JTextField();
+		
+		LoadLog = new JButton("Load Log");
+		CalculateTotals = new JButton("Calculate Total");
+		ResetButton = new JButton("Reset");
+		ChooseLog = new JFileChooser();
 		
 		//Display the window. 
 		frame.setPreferredSize(new Dimension(1080, 720));
@@ -82,6 +94,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		used to describe pizzas and customers should be translated 
 		to into pizza and customer ‘types’ using descriptive language 
 		(Margherita, Meat Lovers, Vegetarian/Pick Up, Driver Delivery, Drone Delivery). */
+		
 	
 	}
 
