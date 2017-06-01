@@ -208,6 +208,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		LoadLog.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				DisplayInformation.setEnabled(false);
+				CalculationsProfit.setEnabled(false);
+				CalculationsDistance.setEnabled(false); 
 				ChooseLog = new JFileChooser("logs/");
 				FileNameExtensionFilter TxtFilter = new FileNameExtensionFilter("Text Files", "txt");
 				ChooseLog.setFileFilter(TxtFilter);
@@ -300,6 +303,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				ResultsProfit.setText("$          "+twoDecimal.format(TotalProfit));
 				ResultsDistance.setText("      "+twoDecimal.format(TotalDistance)+" blocks");
 				LogStatus.setText("Log file currently not loaded.");
+				DisplayInformation.setEnabled(false);
+				CalculationsProfit.setEnabled(false);
+				CalculationsDistance.setEnabled(false); 
 			}
 		});	
 		
