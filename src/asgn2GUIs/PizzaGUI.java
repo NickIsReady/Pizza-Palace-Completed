@@ -42,6 +42,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	private JTable CustomerTable;
 	private JTable PizzaTable;
 	
+	private JTextField LogStatus;
 	private JTextField ResultsProfit;
 	private JTextField ResultsDistance;
 	
@@ -54,8 +55,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	private JFileChooser ChooseLog;
 	
 	private String Filename;
-	
-	private JLabel LogStatus;
 	
 	private double TotalProfit = 0.00;
 	private double TotalDistance = 0.00;
@@ -91,11 +90,24 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				LogButtons.setLayout(new BoxLayout(LogButtons,BoxLayout.Y_AXIS));
 				LoadLog = new JButton("Open log file");
 				LogButtons.add(LoadLog);
-				LogStatus = new JLabel("Log file currently not loaded.");
+				
+				LogButtons.add(Box.createRigidArea(new Dimension(0,10)));
+				
+				JLabel LogStatusName = new JLabel("Current Log File Status");
+				LogButtons.add(LogStatusName);
+				
+				LogStatus = new JTextField("Log file currently not loaded.");
+				LogStatus.setPreferredSize(new Dimension(200,150));
+				LogStatus.setEditable(false);
 				LogButtons.add(LogStatus);
+				
+				LogButtons.add(Box.createRigidArea(new Dimension(0,10)));
+				
 				DisplayInformation = new JButton("Display Log File Data");
 				DisplayInformation.setEnabled(false);
 				LogButtons.add(DisplayInformation);
+				
+				LogButtons.add(Box.createRigidArea(new Dimension(0,200)));
 				
 			LogButtonPlusCalculations.add(LogButtons, BorderLayout.LINE_START);
 			
@@ -116,6 +128,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					ResultsProfit = new JTextField(twoDecimal.format(TotalProfit));
 					ResultsProfit.setPreferredSize(new Dimension(70,20));
 					ResultsProfit.setHorizontalAlignment(SwingConstants.RIGHT);
+					ResultsProfit.setEditable(false);
 					CalculateProfit.add(ResultsProfit, 2);
 				Calculations.add(CalculateProfit);
 		
@@ -130,6 +143,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					ResultsDistance = new JTextField(twoDecimal.format(TotalDistance));
 					ResultsDistance.setPreferredSize(new Dimension(70,20));
 					ResultsDistance.setHorizontalAlignment(SwingConstants.RIGHT);
+					ResultsDistance.setEditable(false);
 					CalculateDistance.add(ResultsDistance, 1);
 					
 					JLabel Blocks = new JLabel("Blocks");
