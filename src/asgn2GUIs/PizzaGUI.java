@@ -63,7 +63,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	DefaultTableModel CustomerTableModel;
 	DefaultTableModel PizzaTableModel;
 	
-	private DecimalFormat twoDecimal = new DecimalFormat("#.00");
+	private DecimalFormat twoDecimal = new DecimalFormat("#0.00");
 	
 	/**
 	 * Creates a new Pizza GUI with the specified title 
@@ -251,7 +251,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 						dataCustomerRow[2] = restaurant.getCustomerByIndex(i).getCustomerType();
 						dataCustomerRow[3] = restaurant.getCustomerByIndex(i).getLocationX();
 						dataCustomerRow[4] = restaurant.getCustomerByIndex(i).getLocationY();
-						dataCustomerRow[5] = restaurant.getCustomerByIndex(i).getDeliveryDistance();
+						dataCustomerRow[5] = twoDecimal.format(restaurant.getCustomerByIndex(i).getDeliveryDistance());
 						CustomerTableModel.addRow(dataCustomerRow);
 					} catch (CustomerException e1) {
 						e1.printStackTrace();
@@ -262,9 +262,9 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					try {
 						dataPizzaRow[0] = restaurant.getPizzaByIndex(j).getPizzaType();
 						dataPizzaRow[1] = restaurant.getPizzaByIndex(j).getQuantity();
-						dataPizzaRow[2] = restaurant.getPizzaByIndex(j).getOrderPrice();
-						dataPizzaRow[3] = restaurant.getPizzaByIndex(j).getOrderCost();
-						dataPizzaRow[4] = restaurant.getPizzaByIndex(j).getOrderProfit();
+						dataPizzaRow[2] = twoDecimal.format(restaurant.getPizzaByIndex(j).getOrderPrice());
+						dataPizzaRow[3] = twoDecimal.format(restaurant.getPizzaByIndex(j).getOrderCost());
+						dataPizzaRow[4] = twoDecimal.format(restaurant.getPizzaByIndex(j).getOrderProfit());
 						PizzaTableModel.addRow(dataPizzaRow);
 					} catch (PizzaException e1) {
 						e1.printStackTrace();
