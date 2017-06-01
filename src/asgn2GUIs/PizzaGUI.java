@@ -263,6 +263,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				
 				for (int j = 0; j < restaurant.getNumPizzaOrders(); j++){
 					try {
+						restaurant.getPizzaByIndex(j).calculateCostPerPizza();
 						dataPizzaRow[0] = restaurant.getPizzaByIndex(j).getPizzaType();
 						dataPizzaRow[1] = restaurant.getPizzaByIndex(j).getQuantity();
 						dataPizzaRow[2] = twoDecimal.format(restaurant.getPizzaByIndex(j).getOrderPrice());
