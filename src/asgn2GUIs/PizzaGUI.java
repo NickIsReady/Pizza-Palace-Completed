@@ -107,10 +107,16 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				
 					CalculationsProfit = new JButton("Calculate Total Profit");
 					CalculationsProfit.setEnabled(false);
+					CalculationsProfit.setPreferredSize(new Dimension(180,30));
 					CalculateProfit.add(CalculationsProfit, 0);
 					
-					ResultsProfit = new JTextField("$          "+twoDecimal.format(TotalProfit));
-					CalculateProfit.add(ResultsProfit, 1);
+					JLabel Dollar = new JLabel("$");
+					CalculateProfit.add(Dollar,1);
+					
+					ResultsProfit = new JTextField(twoDecimal.format(TotalProfit));
+					ResultsProfit.setPreferredSize(new Dimension(70,20));
+					ResultsProfit.setHorizontalAlignment(SwingConstants.RIGHT);
+					CalculateProfit.add(ResultsProfit, 2);
 				Calculations.add(CalculateProfit);
 		
 					JPanel CalculateDistance = new JPanel();
@@ -118,10 +124,16 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					
 					CalculationsDistance = new JButton("Calculate Total Distance");
 					CalculationsDistance.setEnabled(false);
+					CalculationsDistance.setPreferredSize(new Dimension(180,30));
 					CalculateDistance.add(CalculationsDistance, 0);
 					
-					ResultsDistance = new JTextField("      "+twoDecimal.format(TotalDistance)+" blocks");
+					ResultsDistance = new JTextField(twoDecimal.format(TotalDistance));
+					ResultsDistance.setPreferredSize(new Dimension(70,20));
+					ResultsDistance.setHorizontalAlignment(SwingConstants.RIGHT);
 					CalculateDistance.add(ResultsDistance, 1);
+					
+					JLabel Blocks = new JLabel("Blocks");
+					CalculateDistance.add(Blocks,2);
 				Calculations.add(CalculateDistance);
 				
 			LogButtonPlusCalculations.add(Calculations, BorderLayout.SOUTH);
@@ -223,8 +235,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					CustomerTableModel.setRowCount(0);
 					PizzaTableModel.setRowCount(0);
 					restaurant.resetDetails();
-					ResultsProfit.setText("$          "+twoDecimal.format(TotalProfit));
-					ResultsDistance.setText("      "+twoDecimal.format(TotalDistance)+" blocks");
+					ResultsProfit.setText(twoDecimal.format(TotalProfit));
+					ResultsDistance.setText(twoDecimal.format(TotalDistance));
 					LogStatus.setText("Log file currently not loaded.");
 					
 					try {
@@ -281,7 +293,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TotalProfit = restaurant.getTotalProfit();
-				ResultsProfit.setText("$          "+twoDecimal.format(TotalProfit));	
+				ResultsProfit.setText(twoDecimal.format(TotalProfit));	
 			}
 		});
 		
@@ -289,7 +301,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TotalDistance = restaurant.getTotalDeliveryDistance();
-				ResultsDistance.setText("      "+twoDecimal.format(TotalDistance)+" blocks");
+				ResultsDistance.setText(twoDecimal.format(TotalDistance));
 			}
 		});
 		
@@ -301,8 +313,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				CustomerTableModel.setRowCount(0);
 				PizzaTableModel.setRowCount(0);
 				restaurant.resetDetails();
-				ResultsProfit.setText("$          "+twoDecimal.format(TotalProfit));
-				ResultsDistance.setText("      "+twoDecimal.format(TotalDistance)+" blocks");
+				ResultsProfit.setText(twoDecimal.format(TotalProfit));
+				ResultsDistance.setText(twoDecimal.format(TotalDistance));
 				LogStatus.setText("Log file currently not loaded.");
 				DisplayInformation.setEnabled(false);
 				CalculationsProfit.setEnabled(false);
