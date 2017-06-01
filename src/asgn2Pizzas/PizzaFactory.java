@@ -25,7 +25,7 @@ public class PizzaFactory {
 	 * @param quantity - The number of pizzas ordered 
 	 * @param orderTime - The time that the pizza order was made and sent to the kitchen 
 	 * @param deliveryTime - The time that the pizza was delivered to the customer
-	 * @throws PizzaException if the pizzaCode is not one of the three valid codes listed in Section 5.3 of the Assignment Specification. 
+	 * @throws PizzaException if the pizzaCode is not PZM, PZV or PZL 
 	 * @return A valid Pizza object using the specified parameters 
 	 * */
 	public static Pizza getPizza(String pizzaCode, int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException{

@@ -15,9 +15,6 @@ import asgn2Exceptions.PizzaException;
  *
  */
 public class VegetarianPizza extends Pizza {
-
-	private LocalTime openingTime = LocalTime.of(19, 00);
-	private LocalTime closingTime = LocalTime.of(23, 00);
 	
 	/**
 	 * 
@@ -31,18 +28,11 @@ public class VegetarianPizza extends Pizza {
 	 * @param quantity - The number of pizzas ordered 
 	 * @param orderTime - The time that the pizza order was made and sent to the kitchen 
 	 * @param deliveryTime - The time that the pizza was delivered to the customer
-	 * @throws PizzaException if supplied parameters are invalid 
+	 * @throws PizzaException if supplied parameters violate the constraints specified in the pizza class 
 	 *
 	 */
 	public VegetarianPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
 		super(quantity, orderTime, deliveryTime, "Vegetarian", 10.00);
-		if (quantity < 1 || quantity > 10) {
-			throw new PizzaException("Invalid quantity!");
-		} else if (orderTime.isBefore(openingTime) == true || orderTime.isAfter(closingTime) == true) {
-			throw new PizzaException("Order time is invalid!");
-		} else if (deliveryTime.isBefore(orderTime.plusMinutes(10)) == true || deliveryTime.isAfter(orderTime.plusHours(1)) == true) {
-			throw new PizzaException("Delivery time is invalid!");
-		}
 	}
 
 }

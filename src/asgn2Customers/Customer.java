@@ -34,7 +34,7 @@ public abstract class Customer {
 	 * @param locationX - The customer x location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
 	 * @param locationY - The customer y location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
 	 * @param type - A human understandable description of this Customer type
-	 * @throws CustomerException if supplied parameters are invalid 
+	 * @throws CustomerException if name is empty or is more than 20 characters long, mobileNumber is empty, does not start with a 0 or contains letters, locationX or locationY is less than -10 or greater than 10, or type is empty
 	 * 
 	 */
 	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{

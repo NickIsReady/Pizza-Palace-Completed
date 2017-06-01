@@ -87,7 +87,8 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		JPanel LogButtonPlusCalculations = new JPanel();
 			LogButtonPlusCalculations.setBackground(new Color(247, 243, 190));
 			LogButtonPlusCalculations.setLayout(new BorderLayout());
-			
+				
+				//Create the buttons and components needed to load a log file
 				JPanel LogButtons = new JPanel();
 				LogButtons.setBackground(new Color(247, 243, 190));
 				LogButtons.setLayout(new BoxLayout(LogButtons,BoxLayout.Y_AXIS));
@@ -121,7 +122,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				
 			LogButtonPlusCalculations.add(LogButtons, BorderLayout.LINE_START);
 			
-			
+				//Create the buttons and components needed to perform calculations of the total profit and distance
 				JPanel Calculations = new JPanel();
 				Calculations.setBackground(new Color(247, 243, 190));
 				Calculations.setLayout(new BoxLayout(Calculations, BoxLayout.Y_AXIS));
@@ -168,6 +169,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			
 		frame.getContentPane().add(LogButtonPlusCalculations, BorderLayout.WEST);
 		
+		//Create the tables that will display the information obtained from the log file
 		JPanel Tables = new JPanel();
 			Tables.setLayout(new BoxLayout(Tables, BoxLayout.Y_AXIS));
 			
@@ -189,6 +191,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		
 		frame.getContentPane().add(Tables, BorderLayout.EAST);
 		
+		//Create the reset button
 		JPanel ResetPanel = new JPanel();
 			ResetPanel.setBackground(new Color(237, 172, 107));
 			ResetPanel.setLayout(new FlowLayout());
@@ -211,6 +214,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 	public void run() {
 		restaurant = new PizzaRestaurant();
 		
+		//Load log when the "Open Log File" button is pressed
 		LoadLog.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -221,6 +225,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				FileNameExtensionFilter TxtFilter = new FileNameExtensionFilter("Text Files", "txt");
 				ChooseLog.setFileFilter(TxtFilter);
 				int ReturnValue = ChooseLog.showOpenDialog(null);
+				//Check if log has been chosen
 				if (ReturnValue == JFileChooser.APPROVE_OPTION){
 					Filename = "logs/" + ChooseLog.getSelectedFile().getName();
 					
@@ -235,6 +240,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					
 					try {
 						restaurant.processLog(Filename);
+						//Check if log has loaded with no errors
 						if (restaurant.processLog(Filename) == true) {
 							LogStatus.setText("Log "+ ChooseLog.getSelectedFile().getName() +" Processed Successfully.");
 							DisplayInformation.setEnabled(true);
@@ -250,11 +256,13 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			}	
 		});
 		
+		//Display customer and pizza information in their respective display tables
 		DisplayInformation.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Object [] dataCustomerRow = new Object[6];
 				Object [] dataPizzaRow = new Object[5];
+				//Populate customer table with information from log
 				for (int index = 0; index < restaurant.getNumCustomerOrders(); index++){
 					try {
 						dataCustomerRow[0] = restaurant.getCustomerByIndex(index).getName();
@@ -268,7 +276,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 						e1.printStackTrace();
 					}
 				}
-				
+				//Populate pizza table with information from log
 				for (int index = 0; index < restaurant.getNumPizzaOrders(); index++){
 					try {
 						restaurant.getPizzaByIndex(index).calculateCostPerPizza();
@@ -286,6 +294,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			}
 		});
 		
+		//Calculate and display the total profit of all pizza orders
 		CalculationsProfit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -294,6 +303,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			}
 		});
 		
+		//Calculate and display the total delivery distance of all customers
 		CalculationsDistance.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -302,6 +312,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			}
 		});
 		
+		//Clear all information and reset the GUI
 		Reset.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
