@@ -57,6 +57,12 @@ public class CustomerTests {
 	}
 	
 	@Test (expected = CustomerException.class)
+	public void invalidCustomerNameNotString() throws CustomerException {
+		customerC = new PickUpCustomer("abcdefghijklmnopqrstu", mobileNumberC, locationXC, locationYC);
+		assertEquals(01234, customerC.getName());
+	}
+	
+	@Test (expected = CustomerException.class)
 	public void invalidCustomerMobileNumberEmpty() throws CustomerException {
 		customerA = new DriverDeliveryCustomer(nameA, "", locationXA, locationYA);
 		assertEquals("", customerA.getMobileNumber());
@@ -97,16 +103,6 @@ public class CustomerTests {
 		customerB = new DroneDeliveryCustomer(nameB, mobileNumberB, locationXB, -18);
 		assertEquals(-18, customerB.getLocationY());
 	}
-	
-	/*@Test (expected = CustomerException.class)
-	public void invalidCustomerType() throws CustomerException {
-		customerA = new DriverDeliveryCustomer(nameA, mobileNumberA, locationXA, locationYA);
-		customerB = new DroneDeliveryCustomer(nameB, mobileNumberB, locationXB, locationYB);
-		customerC = new PickUpCustomer(nameC, mobileNumberC, locationXC, locationYC);
-		assertEquals("", customerA.getCustomerType());
-		assertEquals("", customerB.getCustomerType());
-		assertEquals("", customerC.getCustomerType());
-	}*/
 	
 	@Before
 	public void setupCustomer() throws CustomerException {
