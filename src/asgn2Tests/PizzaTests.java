@@ -231,14 +231,4 @@ public class PizzaTests {
 		Pizza InvalidPizza = new MargheritaPizza(quantityA, LocalTime.of(20, 10), LocalTime.of(21, 11));
 	}
 	
-	//@Test(expected = PizzaException.class)
-	//public void ExceptionInvalidType() throws PizzaException {
-	//	Pizza InvalidPizza = new Pizza(quantityA, orderTimeA, deliveryTimeA, "InvalidType", 8.00);
-	//}
-	
-	//@Test(expected = PizzaException.class)
-	//public void ExceptionInvalidPrice() throws PizzaException {
-	//	Pizza InvalidPizza = new Pizza(quantityA, orderTimeA, deliveryTimeA, "Margherita", -8.00);
-	//}
-	
 }
