@@ -286,6 +286,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 						e1.printStackTrace();
 					}
 				}
+				DisplayInformation.setEnabled(false);
 			}
 		});
 		
