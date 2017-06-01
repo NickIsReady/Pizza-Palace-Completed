@@ -204,41 +204,6 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		//size frame and make it visible
 		frame.pack(); 
 		frame.setVisible(true);
-		
-		
-		
-		/*Thomas bit
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		//Create and set up the window. 
-		JFrame frame = new JFrame(title);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		//Add the label. 
-		JLabel label = new JLabel("Pizza Palace");
-		
-		OrderTable = new JTable();
-		TotalsDisplay = new JTextField();
-		
-		LoadLog = new JButton("Load Log");
-		CalculateTotals = new JButton("Calculate Total");
-		ResetButton = new JButton("Reset");
-		ChooseLog = new JFileChooser();
-		
-		//Display the window. 
-		frame.setPreferredSize(new Dimension(1080, 720));
-		frame.setResizable(true);
-		frame.setLocation(new Point(200, 200));
-		
-		frame.getContentPane().add(label);
-		frame.getContentPane().setBackground(Color.white);
-		frame.getContentPane().add(OrderTable);
-		frame.getContentPane().add(TotalsDisplay);
-		frame.getContentPane().add(LoadLog);
-		frame.getContentPane().add(CalculateTotals);
-		frame.getContentPane().add(ResetButton);
-
-		frame.pack(); 
-		frame.setVisible(true);
-		*/
 	}
 
 	
@@ -270,15 +235,17 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 					
 					try {
 						restaurant.processLog(Filename);
+						if (restaurant.processLog(Filename) == true) {
+							LogStatus.setText("Log "+ ChooseLog.getSelectedFile().getName() +" Processed Successfully.");
+							DisplayInformation.setEnabled(true);
+							CalculationsProfit.setEnabled(true);
+							CalculationsDistance.setEnabled(true); 
+							Reset.setEnabled(true);
+						}
 					} catch (CustomerException | PizzaException | LogHandlerException e1) {
 						LogStatus.setText(e1.getMessage());
 						e1.printStackTrace();
 					}
-					LogStatus.setText("Log "+ ChooseLog.getSelectedFile().getName() +" Processed Successfully.");
-					DisplayInformation.setEnabled(true);
-					CalculationsProfit.setEnabled(true);
-					CalculationsDistance.setEnabled(true); 
-					Reset.setEnabled(true);
 				}
 			}	
 		});
@@ -288,28 +255,28 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			public void actionPerformed(ActionEvent e) {
 				Object [] dataCustomerRow = new Object[6];
 				Object [] dataPizzaRow = new Object[5];
-				for (int i = 0; i < restaurant.getNumCustomerOrders(); i++){
+				for (int index = 0; index < restaurant.getNumCustomerOrders(); index++){
 					try {
-						dataCustomerRow[0] = restaurant.getCustomerByIndex(i).getName();
-						dataCustomerRow[1] = restaurant.getCustomerByIndex(i).getMobileNumber();
-						dataCustomerRow[2] = restaurant.getCustomerByIndex(i).getCustomerType();
-						dataCustomerRow[3] = restaurant.getCustomerByIndex(i).getLocationX();
-						dataCustomerRow[4] = restaurant.getCustomerByIndex(i).getLocationY();
-						dataCustomerRow[5] = twoDecimal.format(restaurant.getCustomerByIndex(i).getDeliveryDistance());
+						dataCustomerRow[0] = restaurant.getCustomerByIndex(index).getName();
+						dataCustomerRow[1] = restaurant.getCustomerByIndex(index).getMobileNumber();
+						dataCustomerRow[2] = restaurant.getCustomerByIndex(index).getCustomerType();
+						dataCustomerRow[3] = restaurant.getCustomerByIndex(index).getLocationX();
+						dataCustomerRow[4] = restaurant.getCustomerByIndex(index).getLocationY();
+						dataCustomerRow[5] = twoDecimal.format(restaurant.getCustomerByIndex(index).getDeliveryDistance());
 						CustomerTableModel.addRow(dataCustomerRow);
 					} catch (CustomerException e1) {
 						e1.printStackTrace();
 					}
 				}
 				
-				for (int j = 0; j < restaurant.getNumPizzaOrders(); j++){
+				for (int index = 0; index < restaurant.getNumPizzaOrders(); index++){
 					try {
-						restaurant.getPizzaByIndex(j).calculateCostPerPizza();
-						dataPizzaRow[0] = restaurant.getPizzaByIndex(j).getPizzaType();
-						dataPizzaRow[1] = restaurant.getPizzaByIndex(j).getQuantity();
-						dataPizzaRow[2] = twoDecimal.format(restaurant.getPizzaByIndex(j).getOrderPrice());
-						dataPizzaRow[3] = twoDecimal.format(restaurant.getPizzaByIndex(j).getOrderCost());
-						dataPizzaRow[4] = twoDecimal.format(restaurant.getPizzaByIndex(j).getOrderProfit());
+						restaurant.getPizzaByIndex(index).calculateCostPerPizza();
+						dataPizzaRow[0] = restaurant.getPizzaByIndex(index).getPizzaType();
+						dataPizzaRow[1] = restaurant.getPizzaByIndex(index).getQuantity();
+						dataPizzaRow[2] = twoDecimal.format(restaurant.getPizzaByIndex(index).getOrderPrice());
+						dataPizzaRow[3] = twoDecimal.format(restaurant.getPizzaByIndex(index).getOrderCost());
+						dataPizzaRow[4] = twoDecimal.format(restaurant.getPizzaByIndex(index).getOrderProfit());
 						PizzaTableModel.addRow(dataPizzaRow);
 					} catch (PizzaException e1) {
 						e1.printStackTrace();
@@ -350,34 +317,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				CalculationsProfit.setEnabled(false);
 				CalculationsDistance.setEnabled(false); 
 			}
-		});	
-		
-		/* Thomas Bit
-		 * //code to press button goes here
-		 *
-		//and choose file
-		String filename = "";
-		restaurant = new PizzaRestaurant();
-		//restaurant.processLog(filename)
-		//component such as a JTextField or JTable is suitable to display this information.
-	
-		/* The information needs to be user friendly, so the codes 
-		used to describe pizzas and customers should be translated 
-		to into pizza and customer ‘types’ using descriptive language 
-		(Margherita, Meat Lovers, Vegetarian/Pick Up, Driver Delivery, Drone Delivery).
-		try {
-			if (restaurant.processLog(filename) == true) {
-				//Fill Customer table with customer information from log
-				
-				//Fill Pizza table with order information from log
-				
-				//Display the total distance and profit made from log
-			}
-		} catch (CustomerException | PizzaException | LogHandlerException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		*/
+		});
 	}
 
 	
