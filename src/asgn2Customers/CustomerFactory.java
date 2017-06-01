@@ -36,7 +36,7 @@ public class CustomerFactory {
 			case("DVC") :
 				return new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
 			default :
-				throw new CustomerException("The customer specified does not match any of the three types, Pick Up, Driver Delivery or Drone Delivery");
+				throw new CustomerException("No Pick Up, Driver Delivery or Drone Delivery.");
 		}
 	}
 }

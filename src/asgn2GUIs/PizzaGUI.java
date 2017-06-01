@@ -101,7 +101,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				LogButtons.add(LogStatusName);
 				
 				LogStatus = new JTextField("Log file currently not loaded.");
-				LogStatus.setPreferredSize(new Dimension(200,150));
+				LogStatus.setPreferredSize(new Dimension(250,75));
 				LogStatus.setEditable(false);
 				LogButtons.add(LogStatus);
 				
