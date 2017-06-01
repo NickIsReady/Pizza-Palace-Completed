@@ -115,7 +115,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				//Image was found online at http://www.mycutegraphics.com/graphics/food/whole-pizza.html
 				ImageIcon pizzaImage = new ImageIcon("pizzaImage.png");
 				JLabel LabelPizzaImage = new JLabel(pizzaImage);
-				LogButtons.add(LabelPizzaImage);
+				LogButtons.add(LabelPizzaImage); 
 				
 				LogButtons.add(Box.createRigidArea(new Dimension(0,10)));
 				
