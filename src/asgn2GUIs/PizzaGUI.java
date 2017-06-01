@@ -78,15 +78,18 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		
 		//Setup main JFrame components
 		JPanel Title = new JPanel();
+			Title.setBackground(new Color(237, 172, 107));//rgb
 			Title.setLayout(new FlowLayout());
 			JLabel label = new JLabel("Pizza Palace");
 			Title.add(label,0);
 		frame.getContentPane().add(Title, BorderLayout.NORTH);
 		
 		JPanel LogButtonPlusCalculations = new JPanel();
+			LogButtonPlusCalculations.setBackground(new Color(247, 243, 190));
 			LogButtonPlusCalculations.setLayout(new BorderLayout());
 			
 				JPanel LogButtons = new JPanel();
+				LogButtons.setBackground(new Color(247, 243, 190));
 				LogButtons.setLayout(new BoxLayout(LogButtons,BoxLayout.Y_AXIS));
 				LoadLog = new JButton("Open log file");
 				LogButtons.add(LoadLog);
@@ -113,8 +116,11 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 			
 			
 				JPanel Calculations = new JPanel();
-					Calculations.setLayout(new BoxLayout(Calculations, BoxLayout.Y_AXIS));
+				Calculations.setBackground(new Color(247, 243, 190));
+				Calculations.setLayout(new BoxLayout(Calculations, BoxLayout.Y_AXIS));
+					
 					JPanel CalculateProfit = new JPanel();
+					CalculateProfit.setBackground(new Color(247, 243, 150));
 					CalculateProfit.setLayout(new FlowLayout());
 				
 					CalculationsProfit = new JButton("Calculate Total Profit");
@@ -133,6 +139,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 				Calculations.add(CalculateProfit);
 		
 					JPanel CalculateDistance = new JPanel();
+					CalculateDistance.setBackground(new Color(247, 243, 150));
 					CalculateDistance.setLayout(new FlowLayout());
 					
 					CalculationsDistance = new JButton("Calculate Total Distance");
@@ -176,6 +183,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		frame.getContentPane().add(Tables, BorderLayout.EAST);
 		
 		JPanel ResetPanel = new JPanel();
+			ResetPanel.setBackground(new Color(237, 172, 107));
 			ResetPanel.setLayout(new FlowLayout());
 			Reset = new JButton("Reset Information");
 			Reset.setEnabled(false);
@@ -184,7 +192,7 @@ public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionList
 		
 	
 		
-		frame.getContentPane().setBackground(Color.white);
+		frame.getContentPane().setBackground(Color.CYAN);
 		
 		//size frame and make it visible
 		frame.pack(); 
