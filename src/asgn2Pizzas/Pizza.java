@@ -82,6 +82,7 @@ public abstract class Pizza  {
 	 * @return The amount that an individual pizza costs to make.
 	 */
 	public final double getCostPerPizza(){
+		this.calculateCostPerPizza();
 		return this.cost;
 	}
 
