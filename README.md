@@ -1,1 +1,1 @@
-All information relating to Assignment 2 can be found on Blackboard
+A Java project completed with another student. This repository was imported from Bitbucket.
